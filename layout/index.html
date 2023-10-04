@@ -211,28 +211,28 @@ why things do not turn out as expected.</li>
 <ul>
 <li><strong><code>debug</code></strong>: Enable the debug overlay</li>
 <li><strong><code>reflect</code></strong> (default): Enable <code>bevy_reflect</code> impls for layout components.</li>
-<li><strong><code>chirp</code></strong> (default): Enable <a href="https://lib.rs/crates/cuicui_chirp">chirp</a> <a href="https://docs.rs/cuicui_chirp/0.9.0/cuicui_chirp/parse/trait.ParseDsl.html"><code>ParseDsl</code></a> implementation for <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a></li>
-<li><strong><code>dsl</code></strong> (default): Define and export <code>LayoutDsl</code> <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> impl for the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/macro.dsl.html"><code>dsl!</code></a> macro</li>
+<li><strong><code>chirp</code></strong> (default): Enable <a href="https://lib.rs/crates/cuicui_chirp">chirp</a> <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse/trait.ParseDsl.html"><code>ParseDsl</code></a> implementation for <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a></li>
+<li><strong><code>dsl</code></strong> (default): Define and export <code>LayoutDsl</code> <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> impl for the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/macro.dsl.html"><code>dsl!</code></a> macro</li>
 </ul>
 <h3 id="layouting"><a class="header" href="#layouting">Layouting</a></h3>
 <p><code>cuicui_layout</code> exposes the following <a href="https://docs.rs/bevy/0.11/bevy/ecs/component/trait.Component.html"><code>Component</code></a>s to control layouting:</p>
 <ul>
-<li><a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Node.html"><code>Node</code></a>: A layout node, either a container holding other nodes as bevy
+<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Node.html"><code>Node</code></a>: A layout node, either a container holding other nodes as bevy
 <a href="https://docs.rs/bevy/0.11/bevy/hierarchy/struct.Children.html"><code>Children</code></a> or a leaf node.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.Root.html"><code>Root</code></a>: The root of a node hierarchy. You may have several, all computations
+<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Root.html"><code>Root</code></a>: The root of a node hierarchy. You may have several, all computations
 start from the root.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a>: If you add this component to a <code>Root</code> entity, it will keep
-the same size as the camera with the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a>: If you add this component to a <code>Root</code> entity, it will keep
+the same size as the camera with the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</li>
 </ul>
-<p>See the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation for detailed explanation.</p>
-<p>In short: a <code>Node</code> has independent <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s on the <code>x</code> and <code>y</code> axis. When the
-node is a <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.Container.html"><code>Container</code></a>, it also has additional properties that manages how
+<p>See the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation for detailed explanation.</p>
+<p>In short: a <code>Node</code> has independent <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s on the <code>x</code> and <code>y</code> axis. When the
+node is a <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Container.html"><code>Container</code></a>, it also has additional properties that manages how
 children are distributed within the container.</p>
 <p>Those additional properties are:</p>
 <ul>
-<li><a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Flow.html"><code>Flow</code></a>: The direction in which the children are distributed</li>
-<li><a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Alignment.html"><code>Alignment</code></a>: Where on the cross axis are nodes aligned.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Distribution.html"><code>Distribution</code></a>: How to distribute the children of this container.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Flow.html"><code>Flow</code></a>: The direction in which the children are distributed</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Alignment.html"><code>Alignment</code></a>: Where on the cross axis are nodes aligned.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Distribution.html"><code>Distribution</code></a>: How to distribute the children of this container.</li>
 <li><code>margin</code>: How much margin to put on main and cross axis</li>
 </ul>
 <p>By default, items are aligned at the center of the container, distributed
@@ -240,10 +240,10 @@ on the flow direction evenly within the container.</p>
 <p>A <code>Rule</code> tells the size of the <code>Node</code>, it can depend on the size of its children,
 the size of its parent or be a fixed value.</p>
 <p>There isn't more to it, that's pretty much all of <code>cuicui_layout</code>.
-If this wasn't clear enough please read the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation.</p>
+If this wasn't clear enough please read the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation.</p>
 <h3 id="content-sized"><a class="header" href="#content-sized">Content-sized</a></h3>
 <p>It is possible to size leaf nodes based on components present on the same entity.</p>
-<p>Use the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/content_sized/index.html"><code>content_sized</code></a> traits to do that.</p>
+<p>Use the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/index.html"><code>content_sized</code></a> traits to do that.</p>
 <h3 id="debugging"><a class="header" href="#debugging">Debugging</a></h3>
 <p><code>cuicui_layout</code> has an integrated debugger. Enable it with the <code>cuicui_layout/debug</code>
 cargo feature.</p>

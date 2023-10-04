@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Using the DSL directly - The Cuicui Book</title>
+        <title>Using a chirp file - The Cuicui Book</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html" class="active"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html" class="active"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,111 +171,74 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="define-a-menu-using-cuicui_layout_bevy_ui"><a class="header" href="#define-a-menu-using-cuicui_layout_bevy_ui">Define a menu using <code>cuicui_layout_bevy_ui</code></a></h1>
+                        <h1 id="define-a-menu-using-a-chirp-file"><a class="header" href="#define-a-menu-using-a-chirp-file">Define a menu using a chirp file</a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
-<p>We added previously <code>cuicui_dsl</code>, <code>cuicui_layout</code>, and <code>cuicui_layout_bevy_ui</code>
-to our <code>Cargo.toml</code>.</p>
-<p>Now let's write some rust code.</p>
-<p>We first import the relevant stuff:</p>
-<pre><code class="language-rust no_run noplayground">use bevy::prelude::*;
-use cuicui_dsl::dsl;
-use cuicui_layout::{dsl_functions::*, LayoutRootCamera};
-use cuicui_layout_bevy_ui::UiDsl as Dsl;</code></pre>
-<p>Then, we initialize the bevy <code>app</code>, all standard bevy stuff.</p>
-<pre><code class="language-rust no_run noplayground">fn main() {
-    App::new()
-        .add_plugins((
-            DefaultPlugins,
-            // Notice that we add the plugin here.
-            cuicui_layout_bevy_ui::Plugin,
-            bevy_inspector_egui::quick::WorldInspectorPlugin::default(),
-        ))
-        .add_systems(Startup, setup)
-        .run();
-}</code></pre>
-<p>Now we want to spawn the UI. Our UI will be a single menu with 7 buttons, each
-with a different text. The buttons and menu all have a background, so we need
-a <code>Res&lt;AssetServer&gt;</code>.</p>
-<pre><code class="language-rust no_run noplayground">fn setup(mut cmds: Commands, serv: Res&lt;AssetServer&gt;) {</code></pre>
-<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
-on the viewport size. So let's spawn the camera with it:</p>
-<pre><code class="language-rust no_run noplayground">    cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));</code></pre>
-<p>Now let's spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.9.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
-<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
-also available.</p>
 <blockquote>
 <p><strong>Note</strong>
 This section is abbridged and might go in much more details in the future.</p>
 </blockquote>
-<p>We want:</p>
-<ul>
-<li>A column menu with the <code>board.png</code> background offset from the left edge of the
-screen by 100 pixels.</li>
-<li>This column contains a large <code>logo.png</code> and a smaller one, it also contains
-7 buttons. We would want some margin between the edges of the screen and
-the content of the coulmn, also between the button and the edge of the column.</li>
-</ul>
-<pre><code class="language-rust no_run noplayground">    let title_card = serv.load(&quot;logo.png&quot;);
-    let bg = serv.load(&quot;background.jpg&quot;);
-    let board = serv.load(&quot;board.png&quot;);
-    let button = serv.load(&quot;button.png&quot;);
+<p>The app setup requires adding <code>cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;()</code>,
+we also setup hot reloading by setting the asset plugin.</p>
+<pre><code class="language-rust no_run noplayground">    App::new()
+        .add_plugins((
+            DefaultPlugins.set({
+                let delay = Duration::from_millis(200);
+                let watch_for_changes = bevy::asset::ChangeWatcher::with_delay(delay);
+                AssetPlugin { asset_folder, watch_for_changes }
+            }),
+            cuicui_layout_bevy_ui::Plugin,
+            bevy_inspector_egui::quick::WorldInspectorPlugin::default(),
+            // You still need to add manually the chirp loaded for UiDsl!
+            cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;(),
+        ))
+        .add_systems(Startup, setup)
+        .run();</code></pre>
+<p>The setup, however, is completely trivial, since it is now the loading plugin
+that takes care of spawning the UI.</p>
+<pre><code class="language-rust no_run noplayground">fn setup(mut cmds: Commands, serv: Res&lt;AssetServer&gt;) {
+    cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));
 
-    dsl! {
-        &amp;mut cmds.spawn_empty(),
-        Root(layout(&quot;&gt;dSaS&quot;) screen_root main_margin(100.) image(&amp;bg)) {
-            Menu(rules(px(310), pct(100)) main_margin(40.) image(&amp;board) column) {
-                TitleCard(image(&amp;title_card) width(pct(100)))
-                TitleCard2(ui(title_card) width(pct(50)))</code></pre>
-<p>Again, you can see what each method (the functions within parenthesis) do by
-checking the <a href="https://docs.rs/cuicui_layout/0.9.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> and <a href="https://docs.rs/cuicui_layout_bevy_ui/0.9.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> docs.</p>
-<p>We only spawned the two title cards, now we spawn the buttons. To do that, we
-will use a <code>code</code> block with a <code>for</code> loop</p>
-<pre><code class="language-rust no_run noplayground">    let menu_buttons = [
-        &quot;CONTINUE&quot;,
-        &quot;NEW GAME&quot;,
-        &quot;LOAD GAME&quot;,
-        &quot;SETTINGS&quot;,
-        &quot;ADDITIONAL CONTENT&quot;,
-        &quot;CREDITS&quot;,
-        &quot;QUIT GAME&quot;,
-    ];
-    let text = |value| Text::from_section(value, TextStyle { font_size: 30.0, ..default() });
-    let title_card = serv.load(&quot;logo.png&quot;);
-    let bg = serv.load(&quot;background.jpg&quot;);
-    let board = serv.load(&quot;board.png&quot;);
-    let button = serv.load(&quot;button.png&quot;);
-
-    dsl! {
-        &amp;mut cmds.spawn_empty(),
-        Root(layout(&quot;&gt;dSaS&quot;) screen_root main_margin(100.) image(&amp;bg)) {
-            Menu(rules(px(310), pct(100)) main_margin(40.) image(&amp;board) column) {
-                TitleCard(image(&amp;title_card) width(pct(100)))
-                TitleCard2(ui(title_card) width(pct(50)))
-                code(let cmds) {
-                    dsl!(cmds, Buttons(column height(child(2.)) width(pct(100))));
-                    cmds.with_children(|cmds|{
-                        for n in &amp;menu_buttons {
-                            let name = format!(&quot;{n} button&quot;);
-                            dsl!(
-                                &amp;mut cmds.spawn_empty(),
-                                Entity(ui(text(*n)) named(name) image(&amp;button) height(px(33)))
-                            );
-                        }
-                    });
-                }
-            }
+    cmds.spawn(ChirpBundle::new(serv.load(&quot;chirp_menu.chirp&quot;)));
+}</code></pre>
+<p>Now, we write the <code>chirp</code> file in the <code>assets/</code> folder.</p>
+<p>This is fairly close to a copy/paste of the one in ???, with the distinction
+that we use an <code>fn</code> template instead of a <code>code</code> block to avoid repetition for
+the menu buttons.</p>
+<pre><code class="language-ron">// file used in &lt;examples/chirp_menu/main.rs&gt;
+fn menu_button(txt) {
+    Entity(text(txt) font_size(30) named(txt) image(&quot;button.png&quot;) height(33px))
+}
+Root(layout(&quot;&gt;dSaS&quot;) screen_root main_margin(100) image(&quot;background.jpg&quot;)) {
+    Menu(rules(310px, 100%) main_margin(40) image(&quot;board.png&quot;) column) {
+        TitleCard(image(&quot;logo.png&quot;) width(100%))
+        TitleCard2(image(&quot;logo.png&quot;) width(50%))
+        Buttons(column rules(100%, 2*)) {
+            Entity(text(&quot;CONTINUE&quot;) font_size(30) named(&quot;CONTINUE&quot;) image(&quot;button.png&quot;) height(33px))
+            menu_button!(&quot;NEW GAME&quot;)
+            menu_button!(&quot;LOAD GAME&quot;)
+            menu_button!(&quot;SETTINGS&quot;)
+            menu_button!(&quot;ADDITIONAL CONTENT&quot;)
+            menu_button!(&quot;CREDITS&quot;)
+            menu_button!(&quot;QUIT GAME&quot;)
         }
-    };</code></pre>
+    }
+}
+</code></pre>
+<p>Similarly to the <code>dsl</code>-based example, the documentation for which methods are
+available is on <code>docs.rs</code> (or your local copy with <code>cargo doc</code>) for <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
+and <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>.</p>
+<p>Try running the <code>chirp_menu</code> example and modifying <code>chirp_menu.chirp</code> to see
+how it affects the layout!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../examples/simple_menu/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../../examples/chirp_menu/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../examples/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -285,11 +248,11 @@ will use a <code>code</code> block with a <code>for</code> loop</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../examples/simple_menu/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../../examples/chirp_menu/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../examples/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

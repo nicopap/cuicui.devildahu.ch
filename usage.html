@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - The Cuicui Book</title>
+        <title>Usage - The Cuicui Book</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html" class="active">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="usage.html" class="active"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,55 +171,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="the-cuicui-framework"><a class="header" href="#the-cuicui-framework">The <code>cuicui</code> framework</a></h1>
-<p><code>cuicui</code> is a collection of crates to work with bevy scenes and making UIs in bevy.</p>
-<video controls>
-  <source src="https://user-images.githubusercontent.com/26321040/272480834-e964565b-44bb-4363-8955-19515624d71a.mp4" type="video/mp4">
-</video>
-<p>This book contains a user-focused guide on how to use the <code>cuicui</code> crates and
-more reference-level documentation on what the capabilities of each crate are.</p>
-<h2 id="semantic-versioning"><a class="header" href="#semantic-versioning">Semantic versioning</a></h2>
-<p>All crates in the <code>cuicui</code> framework follow a synchronous release model, similar
-to bevy's. However, the release cadence is independent from bevy's.</p>
-<h4 id="version-matrix"><a class="header" href="#version-matrix">Version matrix</a></h4>
-<div class="table-wrapper"><table><thead><tr><th>bevy</th><th>latest supporting version</th></tr></thead><tbody>
-<tr><td>0.11</td><td>0.9.0</td></tr>
-<tr><td>0.10</td><td>0.3.0</td></tr>
-</tbody></table>
-</div>
-<h2 id="stability"><a class="header" href="#stability">Stability</a></h2>
-<p><code>cuicui</code> is a playground for experiments, so use at your own risk,
-it is likely that a lot of things are going to break each release.</p>
-<h2 id="cuicui-crates"><a class="header" href="#cuicui-crates"><code>cuicui</code> crates</a></h2>
-<p>The crates included in <code>cuicui</code> are:</p>
-<ul>
-<li><a href="dsl"><code>cuicui_dsl</code></a>: The <code>dsl!</code> macro and <code>DslBundle</code>.</li>
-<li><a href="chirp"><code>cuicui_chirp</code></a>: A parser for files that follow the <code>dsl!</code>
-syntax. It creates a scene identical to what the same text passed to the
-<code>dsl!</code> macro would produce.
-<br />
-It also includes a bevy plugin to load <code>.chirp</code> files defined in this format.</li>
-<li><a href="layout"><code>cuicui_layout</code></a>: The base algorithm and components, does not make any assumption
-about how it is used, beside the requirement that layout nodes be bevy <code>Entitiy</code> and
-uses <code>bevy_hierarchy</code>.</li>
-<li><a href="choosing_a_cuicui_crate.html"><code>cuicui_layout_bevy_ui</code></a>: Integration with <code>bevy_ui</code>, including extension to <code>UiDsl</code>
-for <code>UiImage</code>, <code>Text</code>, background images and background colors.</li>
-<li><a href="choosing_a_cuicui_crate.html"><code>cuicui_layout_bevy_sprite</code></a>: <code>bevy_sprite</code> integration, supports
-<code>Mesh2dHandle</code>, <code>Sprite</code> and <code>Text2d</code>. This isn't as good as the <code>bevy_ui</code>-based integration
-when it comes to content-driven sizes, but otherwise should work very much like the <code>bevy_ui</code>
-integration.</li>
-</ul>
-<h2 id="supporting-development"><a class="header" href="#supporting-development">Supporting development</a></h2>
-<p>This crate is a single person effort. I don't get paid for it, and is generally
-unsustainable. Please consider donating to make <code>cuicui</code> sustainable.</p>
-<p><a href="https://github.com/sponsors/nicopap">https://github.com/sponsors/nicopap</a></p>
+                        <p>Now that we chose the cuicui crates we need, time to use them.</p>
+<p>For illustration, we assume that we went with <code>cuicui_layout_bevy_ui</code>.</p>
+<h2 id="adding-the-selected-crates"><a class="header" href="#adding-the-selected-crates">Adding the selected crates</a></h2>
+<pre><code class="language-toml">[dependencies]
+cuicui_layout_bevy_ui = &quot;0.10.0&quot;
+cuicui_layout = &quot;0.10.0&quot;
+cuicui_dsl = &quot;0.10.0&quot;
+</code></pre>
+<h2 id="using-the-dsl-macro"><a class="header" href="#using-the-dsl-macro">Using the <code>dsl!</code> macro</a></h2>
+<p>That's it! You are now using <code>cuicui_layout</code>, congratulations!</p>
+<p>Check the next two sections for actual rust code!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="choosing_a_cuicui_crate.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next prefetch" href="choosing_a_cuicui_crate.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../examples/simple_menu/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -229,8 +201,11 @@ unsustainable. Please consider donating to make <code>cuicui</code> sustainable.
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="choosing_a_cuicui_crate.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next prefetch" href="choosing_a_cuicui_crate.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../examples/simple_menu/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
