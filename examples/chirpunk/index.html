@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html" class="active"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html" class="active"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -174,7 +175,7 @@
                         <h1 id="chirpunk"><a class="header" href="#chirpunk">Chirpunk</a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
 <p>The cuicui cyberpunk example.</p>
-<p>Inspired by <a href="https://github.com/bytestring-net/bevy-lunex"><code>bevy-lunex</code></a>'s <a href="https://github.com/IDEDARY/bevy-lunex-cyberpunk">cyberpunk example</a>.</p>
+<p>Inspired by <a href="https://github.com/bytestring-net/bevy-lunex"><code>bevy-lunex</code></a>’s <a href="https://github.com/IDEDARY/bevy-lunex-cyberpunk">cyberpunk example</a>.</p>
 <p>This demonstrates how to create and handle a more complex menu. It has:</p>
 <ul>
 <li>Several screens (title screen, graphics settings, audio settings, bonus tabs)</li>
@@ -225,18 +226,9 @@ And use <code>--features advanced_logging</code> to log more stuff.</p>
 <ul>
 <li>Uses <code>bevy_ui</code> (through <code>cuicui_layout_bevy_ui</code>):
 <ul>
-<li>Bloom doesn't work on UI</li>
-<li><strong>Requires a patches version of bevy for hot reloading</strong> to work (see the
-repository's workspace <code>Cargo.toml</code>)</li>
-</ul>
-</li>
-<li>Missing cuicui features:
-<ul>
-<li>A &quot;all overlapping&quot; <code>Distribution</code> mode, to replace some of the <code>MenuSwatch</code>
-functionality and the deep nesting on the main menu background.</li>
-<li>A &quot;templating&quot; feature, replacing <code>dsl::element</code></li>
-<li>Single root attribute, so to avoid some nesting required for <code>bevy_ui</code> to
-not panic, and generally better scene management.</li>
+<li>Bloom doesn’t work on UI</li>
+<li><strong>Requires a patched version of bevy for hot reloading</strong> to work (see the
+repository’s workspace <code>Cargo.toml</code>)</li>
 </ul>
 </li>
 <li>General 3rd party crate ideas:
@@ -245,25 +237,25 @@ not panic, and generally better scene management.</li>
 </ul>
 </li>
 <li>When using mouse input, the current tab in the settings menu is not highlighted.</li>
-<li>The &quot;BACK&quot; button is part of the tabs menu</li>
+<li>The “BACK” button is part of the tabs menu</li>
 </ul>
 <p>The end-goal is to use <code>cuicui_layout_bevy_sprite</code> instead of
-<code>cuicui_layout_bevy_ui</code> as &quot;rendering backend&quot;. As we don't need <code>bevy_ui</code> for
+<code>cuicui_layout_bevy_ui</code> as “rendering backend”. As we don’t need <code>bevy_ui</code> for
 this specific example (the only benefit of <code>bevy_ui</code> over <code>bevy_sprite</code> is
-layouting, click management and borders, of which we use none), and bevy' sprite
+layouting, click management and borders, of which we use none), and bevy’ sprite
 renderer is more flexible.</p>
 <p>But I wanted to start with a working example, and <code>cuicui_layout_bevy_sprite</code>
 still is missing some basic features to make it useable.</p>
 <p>In the future, we will add a new bin target, that re-uses most of the code but
 uses the <code>dsl!</code> macro instead of chirp files.</p>
 <h2 id="architecture"><a class="header" href="#architecture">Architecture</a></h2>
-<p>Since this is a complex example, it needs a bit of a &quot;map&quot; so that you can
+<p>Since this is a complex example, it needs a bit of a “map” so that you can
 orient yourself and find the landmarks that is most relevant to you.</p>
 <p>We have five modules:</p>
 <ul>
 <li><code>dsl</code>: <strong>The most important module</strong>. A wrapper around <code>UiDsl</code> to add to the
-DSL a vocabulary specific to our own UI, such as &quot;main_menu_item&quot; or &quot;tab_button&quot;.
-The &quot;method names&quot; you see used in the <code>.chirp</code> files and <code>dsl!</code> macros are
+DSL a vocabulary specific to our own UI, such as “main_menu_item” or “tab_button”.
+The “method names” you see used in the <code>.chirp</code> files and <code>dsl!</code> macros are
 methods on <code>BevypunkDsl</code>, and <code>UiDsl</code>, and <code>LayoutDsl</code> and <code>BaseDsl</code>.
 <br />
 Those are methods you can call using regular rust method syntax!</li>
@@ -271,9 +263,9 @@ Those are methods you can call using regular rust method syntax!</li>
 police car strobe lights in the title screen</li>
 <li><code>colormix</code>: defines <code>color_lerp</code> to blend bevy <code>Color</code>s in HSLuv space, used
 in <code>animate</code></li>
-<li><code>ui_offset</code>: Simple plugin to apply object movement AFTER <code>bevy_ui</code>'s layouting
+<li><code>ui_offset</code>: Simple plugin to apply object movement AFTER <code>bevy_ui</code>’s layouting
 system. Used in <code>animate</code> for the shift-on-hover effect.</li>
-<li><code>style</code>: A styling module. It's a way to change styling variable at runtime
+<li><code>style</code>: A styling module. It’s a way to change styling variable at runtime
 throuhg the <code>style::Bevypunk</code> resource. This could also be loaded as a resource
 or modified through <code>bevy-inspector-egui</code>.</li>
 </ul>

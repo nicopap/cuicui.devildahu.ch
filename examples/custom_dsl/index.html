@@ -1,0 +1,595 @@
+<!DOCTYPE HTML>
+<html lang="en" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Defining your own DSL - The Cuicui Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="The user guide and reference of the cuicui framework">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../custom.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../../examples/custom_dsl/index.html" class="active"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Cuicui Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="scaling-up-with-a-custom-dsl"><a class="header" href="#scaling-up-with-a-custom-dsl">Scaling up with a custom DSL</a></h1>
+<p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
+<p><a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/"><code>cuicui_dsl</code></a> and <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/"><code>cuicui_chirp</code></a> are parametrized over the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> and
+<a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> traits respectively.</p>
+<p>You can directly use one of the DSLs exported by an external crate such as
+<a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.1/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>, <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>, <a href="https://docs.rs/bevy-ui-navigation/0.32.0/bevy_ui_navigation/index.html"><code>NavigationDsl</code></a> or <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.10.1/cuicui_layout_bevy_sprite/struct.SpriteDsl.html"><code>SpriteDsl</code></a>, but we recommend
+that you define your own DSL on top of them.</p>
+<p>This is how <a href="https://github.com/nicopap/cuicui_layout/tree/main/examples/chirpunk">the chirpunk example</a> works. We re-use pre-existing DSLs, but add
+our own layer on top, to create a unique vocabulary that applies to the specific
+game we build.</p>
+<p>So let’s make a game.</p>
+<h2 id="better-factorio"><a class="header" href="#better-factorio">Better Factorio</a></h2>
+<p>What better genre than factory-building to illustrate a game UI library?
+Let’s mix in some grand strategy for good measure. We’ll make
+Factorio×CrusaderKings fusion.</p>
+<p>Our goal is to make:</p>
+<ul>
+<li>A menu with several tabs, tabs are:</li>
+<li>A “game” menu with buttons that represent game menu buttons, clicking on them prints a message</li>
+<li>A “production” menu (with static <code>png</code> as graph for now)</li>
+<li>A “diplomacy” menu where we can start and end wars, marry someone, launch missiles</li>
+</ul>
+<p>We will be able to swap menu by clicking buttons, and most game-specific actions
+will result in a message being logged into the terminal.</p>
+<p>For more complex interaction patterns, read <a href="../../reactivity.html">the next chapter</a>.</p>
+<h2 id="a-menu-with-tabs"><a class="header" href="#a-menu-with-tabs">A menu with tabs</a></h2>
+<p>So let’s make a menu.</p>
+<p>First, we write the whole menu. To pretend it is a game menu, we draw a
+background and then have the menu occupy a subset of the screen. We do that
+by setting a 25 pixels margin on the <code>Root</code> entity.</p>
+<p>The menu with tabs is a column menu, the first row is the tab line, the second
+the content:</p>
+<pre><code class="language-rust no_run noplayground">Root(row screen_root margins(25, 25) image(&quot;background.jpg&quot;)) {
+    Menus(column rules(100%, 100%)) {</code></pre>
+<p>Then, we fill up the rest.</p>
+<p>The tab line:</p>
+<pre><code class="language-rust no_run noplayground">        Tabs(row rules(100%, 12.5%) distrib_start) {
+            tab!(&quot;Game Menu&quot;, 0, burlywood)
+            tab!(&quot;Production Menu&quot;, 1, #6b4d22)
+            tab!(&quot;Diplomacy Menu&quot;, 2, #6b4d22)
+        }</code></pre>
+<p>(more on the <code>tab!</code> template later)</p>
+<pre><code class="language-rust no_run noplayground">        Menu(layout(&quot;&gt;oCaC&quot;) rules(100%, 87.5%) marked(Tabs) bg(burlywood)) {
+            game_menu!()
+            production_menu!()(hidden)
+            diplomacy_menu!()(hidden)
+        }</code></pre>
+<p>The content uses the overlapping layout distribution mode with <code>layout(&quot;&gt;oCaC&quot;)</code>
+(the <code>o</code> is the important bit, it stands for “overlapping”). This allows
+each child of <code>Menu</code> to occupy the same space.</p>
+<p>We now just have <code>tab</code>, <code>game_menu</code>, <code>production_menu</code>, and <code>diplomacy_menu</code> to
+define. (more on those <code>(hidden)</code> later)</p>
+<p><img src="../../custom_dsl_gallery/all_overlapping.png" alt="Several nodes on the same space" /></p>
+<h2 id="hide-the-menus"><a class="header" href="#hide-the-menus">Hide the menus</a></h2>
+<p>We used <em>template extras</em> here to mark two of the <code>Menu</code> children as “hidden”.</p>
+<pre><code class="language-rust no_run noplayground">game_menu!()
+production_menu!()(hidden)
+diplomacy_menu!()(hidden)</code></pre>
+<p>Indeed, we don’t want all three menus to be visible at the same time. To this
+end, we spawn the production and diplomacy menus with the <code>Visibility</code> component
+set to <code>Hidden</code>.</p>
+<p>But here is the hang up! Neither <code>LayoutDsl</code> or <code>UiDsl</code> have a <code>hidden</code> method,
+how are we to set the <code>Visibility</code> component?</p>
+<p>Answer: <strong>We write our own DSL.</strong></p>
+<p>Let’s start by creating a new module:</p>
+<pre><code class="language-rust no_run noplayground">mod dsl;</code></pre>
+<p>Then define a <code>BetterFactorioDsl</code>:</p>
+<pre><code class="language-rust no_run noplayground">// `DslBundle` requires `Default`
+#[derive(Default)]
+pub struct BetterFactorioDsl {
+    inner: UiDsl,
+    is_hidden: bool,
+}</code></pre>
+<p>Let’s add the chirp loader for <code>BetterFactorioDsl</code> in our <code>add_plugins</code>:</p>
+<pre><code class="language-rust no_run noplayground">            cuicui_chirp::loader::Plugin::new::&lt;BetterFactorioDsl&gt;(),</code></pre>
+<p>We need to implement <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> on <code>BetterFactorioDsl</code>
+for this to compile.
+The <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro is how we implement <code>ParseDsl</code>.
+We use the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>delegate</code></a> meta-attribute, so that we can re-use the <code>UiDsl</code> and
+<code>LayoutDsl</code> methods in our chirp file:</p>
+<pre><code class="language-rust no_run noplayground">#[parse_dsl_impl(delegate = inner)]
+impl BetterFactorioDsl {}
+
+impl DslBundle for BetterFactorioDsl {
+    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) -&gt; Entity {
+        self.inner.insert(cmds)
+    }
+}</code></pre>
+<p>It compiles now, but we are missing the <code>hidden</code> method:</p>
+<pre><code>Error:   × No 'hidden' method
+    ╭─[better_factorio/menu.chirp:65:1]
+ 65 │             game_menu!()
+ 66 │             production_menu!()(hidden)
+ 67 │             diplomacy_menu!()(hidden)
+    ·                               ^^^^^^
+ 68 │         }
+    ╰────
+  help: custom_dsl::dsl::BetterFactorioDsl doesn't contain a method with this name.
+</code></pre>
+<p>Let’s add it then! We already have a <code>is_hidden</code> field, we just have to
+define a <code>hidden</code> method to set it:</p>
+<pre><code class="language-rust no_run noplayground">impl BetterFactorioDsl {
+    fn hidden(&amp;mut self) {
+        self.is_hidden = true;
+    }</code></pre>
+<p>Now we can read the <code>is_hidden</code> field in the <strong><code>DslBundle::insert</code></strong> implementation:</p>
+<pre><code class="language-rust no_run noplayground">        let id = self.inner.insert(cmds);
+        if self.is_hidden {
+            cmds.insert(Visibility::Hidden);
+        }
+        id</code></pre>
+<p>Make sure to add it <em>after</em> the <code>inner.insert(cmds)</code>. <code>Visibility</code> is part of the
+<code>NodeBundle</code> that <code>UiDsl</code> adds to the entity. Adding it <em>after</em> the <code>inner</code> ensures
+that we overwrite the <code>Visibility</code> component with the wanted value.</p>
+<h2 id="game-menu--interaction"><a class="header" href="#game-menu--interaction">Game menu &amp; interaction</a></h2>
+<p>Ok, so I included the game menu in all those screenshots, but didn’t define it
+yet. Sorry for the confusion.</p>
+<p>The game menu was a template call, <code>game_menu!()</code>. Then, let’s define it.</p>
+<pre><code class="language-rust no_run noplayground">fn game_menu() {
+    GameMenu(column rules(100%, 100%)) {
+        Entity(height(0%))
+        print_button!(&quot;Resume game&quot;)
+        print_button!(&quot;Mute/Unmute&quot;)
+        print_button!(&quot;Save game&quot;)
+        print_button!(&quot;Quit&quot;)
+        Entity(height(0%))
+    }
+}</code></pre>
+<p><code>print_button!</code> is yet another template. It stands for a button we can click,
+when clicking it, a message is displayed in the console.</p>
+<pre><code class="language-rust no_run noplayground">fn print_button(button_text) {
+    Entity(print_text(button_text) highlight row rules(1.1*, 2*) named(button_text) bg(brown)) {
+        ButtonText(text(button_text))
+    }
+}</code></pre>
+<p>Notice that we called the <code>print_text(button_text)</code> and <code>highlight</code> methods in
+<code>print_button!</code>.</p>
+<ul>
+<li><code>highlight</code> should add a component that changes the color of the button when
+it’s being hovered</li>
+<li><code>print_text</code> does print in the console the button text content.</li>
+</ul>
+<p>Let’s add them to our <code>BetterFactorioDsl</code>.</p>
+<h3 id="using-bevy_mod_picking"><a class="header" href="#using-bevy_mod_picking">Using <code>bevy_mod_picking</code></a></h3>
+<p>We will use the <a href="https://crates.io/crates/bevy_mod_picking"><code>bevy_mod_picking</code></a> components for this.</p>
+<p>We should use the <a href="https://docs.rs/bevy_mod_picking/0.15.0/bevy_mod_picking/prelude/struct.On.html"><code>On</code></a> component from <code>bevy_mod_picking</code>. One issue with <code>On</code>
+is that it is not <a href="https://docs.rs/bevy/0.11/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a>, therefore, we cannot use it in our chirp file;
+<code>cuicui_chirp</code> creates a scene then adds it to the bevy world, and this requires
+all components from the scene to be <code>Reflect</code>.</p>
+<blockquote>
+<p><code>cuicui_dsl</code> doesn’t have this issue.</p>
+</blockquote>
+<p>We can get around this limitation by creating a “mirror” component. Mirror
+components are <code>Reflect</code> proxies that are synchronized with actual components.</p>
+<p>We already define a <code>MirrorPlugin</code> in the <a href="https://github.com/nicopap/cuicui_layout/tree/main/examples/cuicui_examples"><code>cuicui_examples</code></a> shared code.</p>
+<blockquote>
+<p>I plan on extracting this into a standalone crate, <code>cuicui_mirror</code>.</p>
+</blockquote>
+<p>All we have left to do is to define a mirror component,
+implement <code>From&lt;&amp;ReflectOnClick&gt;</code> for <code>On&lt;Pointer&lt;Click&gt;&gt;</code>, and add <code>MirrorPlugin</code>.</p>
+<pre><code class="language-rust no_run noplayground">use bevy::prelude::{info, Component, EventWriter, Reflect, ReflectComponent};
+use bevy_mod_picking::prelude::{Click, On, Pointer};
+
+use crate::dsl::{SwitchGraph, SwitchTab};
+
+#[derive(Reflect, Default, Component)]
+#[reflect(Component)]
+pub enum ReflectOnClick {
+    LogInfo(String),
+    EmitSwitchTab(u8),
+    EmitSwitchGraph(u8),
+    #[default]
+    Invalid,
+}
+type OnClick = On&lt;Pointer&lt;Click&gt;&gt;;
+
+impl&lt;'a&gt; From&lt;&amp;'a ReflectOnClick&gt; for OnClick {
+    fn from(value: &amp;'a ReflectOnClick) -&gt; Self {
+        match value {
+            ReflectOnClick::LogInfo(text) =&gt; {
+                let text = text.clone();
+                OnClick::run(move || info!(&quot;{text}&quot;))
+            }
+            &amp;ReflectOnClick::EmitSwitchTab(index) =&gt; {
+                OnClick::run(move |mut ev: EventWriter&lt;_&gt;| ev.send(SwitchTab(index)))
+            }
+            &amp;ReflectOnClick::EmitSwitchGraph(index) =&gt; {
+                OnClick::run(move |mut ev: EventWriter&lt;_&gt;| ev.send(SwitchGraph(index)))
+            }
+            ReflectOnClick::Invalid =&gt; unreachable!(&quot;Should never spawn an invalid ReflectOnClick&quot;),
+        }
+    }
+}</code></pre>
+<pre><code class="language-rust no_run noplayground">            bevy_mod_picking::DefaultPickingPlugins,
+            cuicui_examples::MirrorPlugin::&lt;OnClick, ReflectOnClick&gt;::new_from(),</code></pre>
+<p>Now let’s amend <code>BetterFactorioDsl</code> to add the <code>highlight</code> and <code>print_text</code> methods:</p>
+<pre><code class="language-diff no_run noplayground">#[derive(Default)]
+pub struct BetterFactorioDsl {
+    inner: UiDsl,
+    is_hidden: bool,
++   is_highlight: bool,
++   text_to_print: Option&lt;Box&lt;str&gt;&gt;,
+}
+</code></pre>
+<p>In the <code>#[parse_dsl_impl] impl BetterFactorioDsl</code> block:</p>
+<pre><code class="language-rust no_run noplayground">    fn print_text(&amp;mut self, text: &amp;str) {
+        self.text_to_print = Some(text.into());
+    }
+    fn highlight(&amp;mut self) {
+        self.is_highlight = true;
+    }</code></pre>
+<p>In <code>DslBundle::insert for BetterFactorioDsl</code>:</p>
+<pre><code class="language-rust no_run noplayground">        if let Some(text) = self.text_to_print.take() {
+            cmds.insert(ReflectOnClick::LogInfo(text.into()));
+        }
+        if self.is_highlight {
+            cmds.insert(Highlight::new(Color::BEIGE));
+        }</code></pre>
+<p>I’ll skip over <code>Highlight</code> here, you can <a href="https://github.com/nicopap/cuicui_layout/blob/main/examples/cuicui_examples/src/highlight.rs">see the implementation for yourself</a>.
+Similarly to <code>ReflectOnClick</code>, we use <code>bevy_mod_picking</code> to react to events, but
+define it as a standalone <code>Reflect</code> component to be able to use it in a scene.</p>
+<p><img src="../../custom_dsl_gallery/hover.gif" alt="A mouse cursor moving over buttons that change color when they are hovered" /></p>
+<p>(not shown: the logs in the terminal)</p>
+<h2 id="the-tab-line"><a class="header" href="#the-tab-line">The tab line</a></h2>
+<p>Now that only a single menu shows up at a time, we should have the ability to
+switch between them.</p>
+<p>We should be able to click on a tab to swap between menu.</p>
+<p>Let’s define our <code>tab!</code> template.</p>
+<ul>
+<li>We’ll use a darker tone color for unselected tabs, <code>#6b4d22</code>.</li>
+<li>We’ll give some space between each tab, to reproduce real world tabs
+(<a href="https://en.wikipedia.org/wiki/Skeuomorph">skeuomorphic design</a> 🤓).</li>
+</ul>
+<pre><code class="language-rust no_run noplayground">fn tab(menu_name) {
+    Entity(row rules(1.1*, 100%) named(menu_name)) {
+        TabSurface(highlight row rules(1.1*, 100%) bg(#6b4d22)) {
+            TabText(text(menu_name))
+        }
+    }
+}
+// ...
+Tabs(row rules(100%, 12.5%) distrib_start) {
+    tab!(&quot;Game Menu&quot;)
+    tab!(&quot;Production Menu&quot;)
+    tab!(&quot;Diplomacy Menu&quot;)
+}</code></pre>
+<p><img src="../../custom_dsl_gallery/all_deselected_tabs.png" alt="Our menu with the tabs, but all deselected" /></p>
+<p>It’s nice and all, but we need some interactivity. We also need the selected tab
+to have the same color as the game menu background.</p>
+<p>We can’t use <em>template extras</em> in this case, because the root node of the <code>tab</code>
+template is transparent, we need to pass the color as an additional argument</p>
+<pre><code class="language-diff">-fn tab(menu_name) {
++fn tab(menu_name, initial_color) {
+    Entity(row rules(1.1*, 100%) named(menu_name)) {
+-       TabSurface(highlight row rules(1.1*, 100%) bg(#6b4d22)) {
++       TabSurface(highlight row rules(1.1*, 100%) bg(initial_color)) {
+            TabText(text(menu_name))
+        }
+Tabs(row rules(100%, 12.5%) distrib_start) {
+-   tab!(&quot;Game Menu&quot;)
+-   tab!(&quot;Production Menu&quot;)
+-   tab!(&quot;Diplomacy Menu&quot;)
++   tab!(&quot;Game Menu&quot;, burlywood)
++   tab!(&quot;Production Menu&quot;, #6b4d22)
++   tab!(&quot;Diplomacy Menu&quot;, #6b4d22)
+</code></pre>
+<h3 id="switching-between-tabs"><a class="header" href="#switching-between-tabs">Switching between tabs</a></h3>
+<p>Unlike the <code>print_text</code> buttons, here, we need to change which menu is visible
+when the tab is pressed. So let’s create a new method: <code>switch_tab</code> and add it
+to our template:</p>
+<pre><code class="language-diff">    Entity(row rules(1.1*, 100%) named(menu_name)) {
+-       TabSurface(highlight row rules(1.1*, 100%) bg(#6b4d22)) {
++       TabSurface(highlight switch_tab(menu_index) row rules(1.1*, 100%) bg(initial_color)) {
+            TabText(text(menu_name))
+        }
+</code></pre>
+<p>Similarly to <a href="https://github.com/nicopap/cuicui_layout/blob/main/examples/cuicui_examples/src/highlight.rs"><code>Highlight</code></a>, I won’t expand on <code>switch_tab</code>. The
+idea is to:</p>
+<ol>
+<li>Have a <code>TabButton(u8)</code> component. Whenever an entity with this component is
+clicked, send a <code>SwitchTab</code> event with the <code>u8</code>.</li>
+<li>Mark the parent of all the three menus with a component, <code>Tabs</code>.</li>
+<li>Whenever we receive a <code>SwitchTab(u8)</code> component, query for the <code>Tabs</code> entity and
+its children, set <code>Visibility</code> of all the children but the <code>u8</code> to <code>Visibility::Hidden</code>.</li>
+</ol>
+<pre><code class="language-rust no_run noplayground">    use Visibility::{Hidden, Inherited};
+
+    for req in tab_requests.iter() {
+        let Ok(menu_children) = tab_menu.get_single() else {
+            continue;
+        };
+        let mut i = 0;
+        let mut iter = vis.iter_many_mut(menu_children);
+        while let Some(mut vis) = iter.fetch_next() {
+            *vis = if i == req.index() { Inherited } else { Hidden };
+            i += 1;
+        }
+    }</code></pre>
+<p><a href="https://github.com/nicopap/cuicui_layout/blob/main/examples/cuicui_examples/src/switch.rs">See the implementation for details</a>.</p>
+<p>We need to use <code>bevy_mod_picking</code> for this as well, and this requires using a
+mirror component. Conveniently, we already did it in <a href="#using-bevy_mod_picking">a previous section</a>.</p>
+<pre><code class="language-diff no_run noplayground">#[derive(Default)]
+pub struct BetterFactorioDsl {
+    inner: UiDsl,
+    is_hidden: bool,
+    is_highlight: bool,
+    text_to_print: Option&lt;Box&lt;str&gt;&gt;,
++   switch_tab: Option&lt;u8&gt;,
+}
+</code></pre>
+<p>In the <code>#[parse_dsl_impl] impl BetterFactorioDsl</code> block:</p>
+<pre><code class="language-rust no_run noplayground">    fn switch_tab(&amp;mut self, index: u8) {
+        self.switch_tab = Some(index);
+    }</code></pre>
+<p>In <code>DslBundle::insert for BetterFactorioDsl</code>:</p>
+<pre><code class="language-rust no_run noplayground">        if let Some(index) = self.switch_tab {
+            cmds.insert((ReflectOnClick::EmitSwitchTab(index), TabButton(index)));
+        }</code></pre>
+<p>Finally, we need to pass the menu index as parameter to the template:</p>
+<pre><code class="language-rust no_run noplayground">fn tab(menu_name, menu_index, color) {
+    Entity(row rules(1.1*, 100%) named(menu_name)) {
+        TabSurface(highlight switch_tab(menu_index) row rules(1.1*, 100%) bg(color)) {
+            TabText(text(menu_name))
+        }
+    }
+}</code></pre>
+<pre><code class="language-rust no_run noplayground">        Tabs(row rules(100%, 12.5%) distrib_start) {
+            tab!(&quot;Game Menu&quot;, 0, burlywood)
+            tab!(&quot;Production Menu&quot;, 1, #6b4d22)
+            tab!(&quot;Diplomacy Menu&quot;, 2, #6b4d22)
+        }</code></pre>
+<p><img src="../../custom_dsl_gallery/switch_tab.gif" alt="Navigating between menus with tabs" /></p>
+<h2 id="diplomacy-and-production"><a class="header" href="#diplomacy-and-production">Diplomacy and Production</a></h2>
+<p>The diplomacy menu is very similar to the game menu, I won’t go over it, just
+get a look at the code:</p>
+<pre><code class="language-rust no_run noplayground">fn diplomacy_menu() {
+    DiplomacyMenu(column rules(100%, 90%)) {
+        print_button!(&quot;Start war&quot;)
+        print_button!(&quot;End war&quot;)
+        print_button!(&quot;Marry Someone&quot;)
+        print_button!(&quot;Launch Missiles&quot;)
+    }
+}</code></pre>
+<p>The production menu is more interesting. Similarly to the root menu, we want
+several panels (production types: electricity, water, pollution)
+we can switch between, and buttons to select the panel.</p>
+<p>We will use the same <a href="https://github.com/nicopap/cuicui_layout/blob/main/examples/cuicui_examples/src/switch.rs">switch</a> implementation that we used for tabs.
+This time, we will name our method <code>switch_graph</code>. I won’t go over the rust
+implementation, as it’s pretty much a copy/paste of the tabs switching code.</p>
+<pre><code class="language-rust no_run noplayground">fn production_button(button_text) {
+    Entity(layout(&quot;&gt;dSaC&quot;) named(button_text) rules(100%, 1.5*) bg(#6b4d22) highlight) {
+        Entity(text(button_text))
+    }
+}
+fn production_menu() {
+    ProductionMenu(row rules(100%, 90%) main_margin(30)) {
+        TypesColumn(layout(&quot;vdSaS&quot;) rules(19%, 100%)) {
+            production_button!(Electricity)(switch_graph(0) bg(burlywood))
+            production_button!(Water usage)(switch_graph(1))
+            production_button!(Polution)(switch_graph(2))
+        }
+        Entity(rules(0.5%, 90%) bg(brown))
+        TypesGraph(layout(&quot;&gt;oCaC&quot;) rules(80%, 100%) marked(Graphs)) {
+            Electricity(image(&quot;better_factorio/elect_graph.png&quot;) width(100%))
+            WaterUsage(image(&quot;better_factorio/water_graph.png&quot;) hidden width(100%))
+            Polution(image(&quot;better_factorio/pollution_graph.png&quot;) hidden height(100%))
+        }
+    }
+}</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../examples/chirp_menu/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../reactivity.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../examples/chirp_menu/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../reactivity.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

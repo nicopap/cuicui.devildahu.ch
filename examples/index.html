@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html" class="active"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html" class="active"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -182,12 +183,22 @@
 <p>A single menu made using <code>cuicui_dsl</code>.</p>
 <h4 id="chirp_menu"><a class="header" href="#chirp_menu"><code>chirp_menu</code></a></h4>
 <p>A single menu supporting hot reloading made using <code>cuicui_chirp</code>.</p>
+<h4 id="cuicui_examples"><a class="header" href="#cuicui_examples"><code>cuicui_examples</code></a></h4>
+<p>Library of plugins useful for the more advanced examples.</p>
+<ul>
+<li><code>SwitchPlugin</code>: An event-driven toggle between N children of an entity</li>
+<li><code>MirrorPlugin</code>: A way to sync <code>Reflect</code> components with non-<code>Reflect</code> 3rd party components.</li>
+<li><code>HighlightPlugin</code>: <code>bevy_mod_picking</code>-based hover highlight that tries to
+be smart about color changes.</li>
+</ul>
+<h4 id="custom_dsl"><a class="header" href="#custom_dsl"><code>custom_dsl</code></a></h4>
+<p>A tabed menu with three different screens</p>
 <h4 id="chirpunk"><a class="header" href="#chirpunk"><code>chirpunk</code></a></h4>
 <p>A clone of the cyberpunk 2077 main menu and settings menu.</p>
 <p>Demonstrates full end-to-end usage of <code>.chirp</code>, including common patterns for
 managining complexity.</p>
 <p>This example requires additional steps to work properly.</p>
-<p>Check the <a href="./chirpunk/">example's README</a> for more details.</p>
+<p>Check the <a href="./chirpunk/">example’s README</a> for more details.</p>
 <h4 id="dsl_and_chirp"><a class="header" href="#dsl_and_chirp"><code>dsl_and_chirp</code></a></h4>
 <p>Demonstrates the equivalence between the <code>dsl!</code> macro and the <code>.chirp</code> file
 format. Also used as a test to make sure it is trully equivalent.</p>
@@ -207,7 +218,7 @@ chirp file itself, not the rust source code.</p>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../examples/chirp_menu/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../reactivity.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -221,7 +232,7 @@ chirp file itself, not the rust source code.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../examples/chirp_menu/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../reactivity.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 

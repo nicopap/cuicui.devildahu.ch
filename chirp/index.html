@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html" class="active"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html" class="active"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -179,11 +180,11 @@
 <p>It includes:</p>
 <ul>
 <li>A parser for the file format.</li>
-<li>A bevy loader to load those files in bevy, with <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>.</li>
-<li>A trait (<a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>) to use your own type's methods as chirp methods</li>
-<li>A macro to automatically implement this trait (<a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>)</li>
+<li>A bevy loader to load those files in bevy, with <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>.</li>
+<li>A trait (<a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>) to use your own type’s methods as chirp methods</li>
+<li>A macro to automatically implement this trait (<a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>)</li>
 </ul>
-<p>The syntax is very close to that of <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a>'s <code>dsl!</code> macro,
+<p>The syntax is very close to that of <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a>’s <code>dsl!</code> macro,
 with <a href="#import-statements">some additions</a>.</p>
 <h2 id="when-to-use-cuicui_chirp"><a class="header" href="#when-to-use-cuicui_chirp">When to use <code>cuicui_chirp</code>?</a></h2>
 <ul>
@@ -195,22 +196,22 @@ to replace the innane <code>cmds.spawn(…).insert(…).with_children(…)</code
 </ul>
 <p>Be aware that <code>cuicui_chirp</code>, by its nature, is not a small dependency.
 Consider using <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> if dependency size matters to you.</p>
-<p>Also, as of <code>0.10</code>, <code>cuicui_chirp</code> doesn't support WASM for image and font assets.</p>
+<p>Also, as of <code>0.10</code>, <code>cuicui_chirp</code> doesn’t support WASM for image and font assets.</p>
 <h2 id="how-to-use-cuicui_chirp"><a class="header" href="#how-to-use-cuicui_chirp">How to use <code>cuicui_chirp</code>?</a></h2>
 <h3 id="cargo-features"><a class="header" href="#cargo-features">Cargo features</a></h3>
 <ul>
 <li><strong><code>fancy_errors</code></strong> (default): Print parsing error messages in a nicely formatted way.</li>
-<li><strong><code>macros</code></strong> (default): Define and export the <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro</li>
+<li><strong><code>macros</code></strong> (default): Define and export the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro</li>
 <li><strong><code>load_font</code></strong> (default): load <code>Handle&lt;Font&gt;</code> as method argument</li>
 <li><strong><code>load_image</code></strong> (default): load <code>Handle&lt;Image&gt;</code> as method argument</li>
-<li><strong><code>trace_parser</code></strong>: log very verbose parsing information</li>
+<li><strong><code>more_unsafe</code></strong>: Convert some runtime checks into unsafe assumptions.
+In theory, this is sound, but <code>cuicui_chirp</code> is not tested enough to my taste
+for making those assumptions by default.</li>
 </ul>
 <h3 id="usage"><a class="header" href="#usage">Usage</a></h3>
 <p><code>cuicui_chirp</code> reads files ending with the <code>.chirp</code> extension. To load a <code>.chirp</code>
 file, use <code>ChirpBundle</code> as follow:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span><span class="boring">#[cfg(feature = &quot;doc_and_test&quot;)] mod test {
+<pre><code class="language-rust noplayground"><span class="boring">#[cfg(feature = &quot;doc_and_test&quot;)] mod test {
 </span><span class="boring">use cuicui_chirp::__doc_helpers::*; // ignore this line pls
 </span>use bevy::prelude::*;
 use cuicui_chirp::ChirpBundle;
@@ -219,13 +220,12 @@ fn setup(mut cmds: Commands, assets: Res&lt;AssetServer&gt;) {
     cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));
     cmds.spawn(ChirpBundle::from(assets.load(&quot;my_scene.chirp&quot;)));
 }
-<span class="boring">}
-</span><span class="boring">}</span></code></pre></pre>
-<p>You need however to add the loader pluging (<a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>) for this to work.
+<span class="boring">}</span></code></pre>
+<p>You need however to add the loader pluging (<a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>) for this to work.
 The plugin is parametrized over the DSL type.
-The DSL type needs to implement the <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> trait.</p>
-<p>Here is an example using <code>cuicui_layout_bevy_ui</code>'s DSL:</p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">#[cfg(feature = &quot;doc_and_test&quot;)] mod test {
+The DSL type needs to implement the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> trait.</p>
+<p>Here is an example using <code>cuicui_layout_bevy_ui</code>’s DSL:</p>
+<pre><code class="language-rust no_run noplayground"><span class="boring">#[cfg(feature = &quot;doc_and_test&quot;)] mod test {
 </span><span class="boring">use cuicui_chirp::__doc_helpers::*; // ignore this line pls
 </span><span class="boring">fn setup() {}
 </span>use bevy::prelude::*;
@@ -240,16 +240,16 @@ fn main() {
       .add_systems(Startup, setup)
       .run();
 }
-<span class="boring">}</span></code></pre></pre>
+<span class="boring">}</span></code></pre>
 <h3 id="dsl-specific-documentation"><a class="header" href="#dsl-specific-documentation">DSL-specific documentation</a></h3>
-<p>The identifiers within parenthesis are methods on the <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>.</p>
-<p>Since the <code>chirp</code> format is a wrapper over a <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>, refer to the methods
+<p>The identifiers within parenthesis are methods on the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>.</p>
+<p>Since the <code>chirp</code> format is a wrapper over a <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>, refer to the methods
 on the <code>ParseDsl</code> impl you added as <code>loader::Plugin</code>.</p>
 <h3 id="making-a-dslbundle-compatible-with-cuicui_chirp"><a class="header" href="#making-a-dslbundle-compatible-with-cuicui_chirp">Making a <code>DslBundle</code> compatible with <code>cuicui_chirp</code></a></h3>
-<p>Let's re-use the example in <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> and extend it to work with <code>cuicui_chirp</code>.</p>
-<p>We had a <code>MyDsl</code> that implements <code>DslBundle</code>, now we need to also implement <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>
-for it. So that methods are accessible in <code>ParseDsl</code>, use the <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>
-attribute macro, and add it to the <code>impl</code> block where all the DSL's methods are
+<p>Let’s re-use the example in <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> and extend it to work with <code>cuicui_chirp</code>.</p>
+<p>We had a <code>MyDsl</code> that implements <code>DslBundle</code>, now we need to also implement <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>
+for it. So that methods are accessible in <code>ParseDsl</code>, use the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>
+attribute macro, and add it to the <code>impl</code> block where all the DSL’s methods are
 defined:</p>
 <pre><code class="language-diff">     font_size: f32,
  }
@@ -258,22 +258,55 @@ defined:</p>
      pub fn style(&amp;mut self, style: Style) {
          self.style = style;
 </code></pre>
-<p>Yep, for the simple case that's it. Just avoid panicking inside methods if you
+<p>Yep, for the simple case that’s it. Just avoid panicking inside methods if you
 want to take advantage of hot reloading.</p>
 <h3 id="chirp-file-format"><a class="header" href="#chirp-file-format"><code>.chirp</code> file format</a></h3>
 <p>The basic syntax is similar to the <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> <code>dsl!</code> macro.</p>
 <p>One major difference is that <code>code</code> blocks are replaced with a function registry.
-You can register a function using the <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/loader/struct.WorldHandles.html"><code>WorldHandles</code></a> resource. Registered
+You can register a function using the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/loader/struct.WorldHandles.html"><code>WorldHandles</code></a> resource. Registered
 functions are global to all chirp files loaded using <code>cuicui_chirp</code>.</p>
 <p>The other differences are the addition of import statements (<code>use</code>),
 template definitions (<code>fn</code>), and template calls (<code>template!()</code>).</p>
 <h4 id="import-statements"><a class="header" href="#import-statements">Import statements</a></h4>
 <p>They are currently not implemented, so please proceed to the next section.</p>
+<details><summary><b>Draft design</b></summary>
+<blockquote>
+<p><strong>Note</strong>
+Imports ARE NOT IMPLEMENTED</p>
+</blockquote>
+<p>In <code>cuicui_chirp</code> you are not limited to a single file. You can <em>import</em> other
+chirp files.</p>
+<p>To do so, use an import statement. Import statements <strong>are the first statements
+in the file</strong>; They start with the <code>use</code> keyword, are followed by the source
+path of the file to import and an optional “<code>as</code> imported_name”, this is the
+name with which the import will be refered in this file.</p>
+<pre><code class="language-ron">use different/file
+// ...
+</code></pre>
+<p>You have two ways to use imports:</p>
+<ol>
+<li>As <strong>whole file imports</strong>. You can import any file and directly use it as
+if it was a template without parameters. This is useful if you want to compose
+several complex menus you write in different files.</li>
+<li>As <strong>template collections</strong>. You can import individual templates defined in
+a file. Just complete the path with a <code>.template_name</code>.</li>
+</ol>
+<p>Similarly to rust, you can combine imports, but only templates from the same file,
+so the following is valid:</p>
+<pre><code class="language-ron">use different/file.template
+use different/file.{template1, template2}
+// ...
+</code></pre>
+<p>Wild card imports are not supported.</p>
+<h4 id="publicity"><a class="header" href="#publicity">Publicity</a></h4>
+<p>However, to be able to import templates, you need to mark them as <code>pub</code> in the
+source template. Just prefix the <code>fn</code> with <code>pub</code> and that’s it.</p>
+</details>
 <h4 id="template-definitions"><a class="header" href="#template-definitions">Template definitions</a></h4>
 <p>chirp files admit a series of <code>fn</code> definitions at the very beginning of the
 file. A <code>fn</code> definition looks very similar to rust function definitions.
 It has a name and zero or several parameters. Their body is a single statement:</p>
-<pre><code class="language-ron">// file: &lt;scene.chirp&gt;
+<pre><code class="language-rust ignore noplayground">// file: &lt;scene.chirp&gt;
 // template name
 //   ↓
 // vvvvvv
@@ -288,22 +321,23 @@ fn button(button_text) {
     Entity(named(button_text) width(95%) height(200px) bg(purple) row) {
         ButtonText(text(button_text) rules(0.5*, 0.5*))
     }
-}
-</code></pre>
+}</code></pre>
 <p>You can call a template like you would call a rust macro, by writing the template
 name followed by <code>!</code> and parenthesis:</p>
-<pre><code class="language-ron">// file: &lt;scene.chirp&gt; (following)
+<pre><code class="language-rust ignore noplayground"><span class="boring">fn sys(cmds: &amp;mut cuicui_dsl::EntityCommands) { cuicui_dsl::dsl!(cmds,
+</span>// file: &lt;scene.chirp&gt; (following)
 Menu(screen_root row bg(darkgrey)) {
     TestSpacer(width(30%) height(100px) bg(pink))
     spacer!()
     button!(&quot;Hello world&quot;)
 }
-</code></pre>
+<span class="boring">)}</span></code></pre>
 <p>When a template is called, it will be replaced by the single root statement
 defined as body of the <code>fn</code> definition for that template.</p>
 <h4 id="template-extras"><a class="header" href="#template-extras">Template Extras</a></h4>
 <p>Template calls can be followed by <strong>template extras</strong>.</p>
-<pre><code class="language-ron">// file: &lt;scene.chirp&gt; (following)
+<pre><code class="language-rust ignore noplayground"><span class="boring">fn sys(cmds: &amp;mut cuicui_dsl::EntityCommands) { cuicui_dsl::dsl!(cmds,
+</span>// file: &lt;scene.chirp&gt; (following)
 Menu(screen_root row bg(darkgrey)) {
     TestSpacer(width(30%) height(100px) bg(pink))
 
@@ -318,14 +352,36 @@ Menu(screen_root row bg(darkgrey)) {
         MoreChildren(text(&quot;World&quot;))
     }
 }
-</code></pre>
-<p>The additional methods will be added at the end of template's root statement
+<span class="boring">)}</span></code></pre>
+<p>The additional methods will be added at the end of template’s root statement
 method list. While the additional children statements will be added as children
-of the template's root statement.</p>
+of the template’s root statement.</p>
+<p>Take for example this chirp file:</p>
+<pre><code class="language-rust ignore noplayground">fn deep_trailing2(line, color) {
+    Trailing2Parent {
+        Trailing2 (text(line) bg(color) width(1*))
+    }
+}
+fn deep_trailing1(line2, line1) {
+    deep_trailing2!(line1, red) {
+        Trailing1 (text(line2) bg(green) width(2*))
+    }
+}
+deep_trailing1!(&quot;Second line&quot;, &quot;First line&quot;) (column bg(beige) rules(1.1*, 2*) margin(20)) {
+    Trailing0 (text(&quot;Third line&quot;) bg(blue))
+}</code></pre>
+<p>It is equivalent to:</p>
+<pre><code class="language-rust ignore noplayground"><span class="boring">fn sys(cmds: &amp;mut cuicui_dsl::EntityCommands) { cuicui_dsl::dsl!(cmds,
+</span>Trailing2Parent(column bg(beige) rules(1.1*, 2*) margin(20)) {
+    Trailing2 (text(&quot;First line&quot;) bg(red) width(1*))
+    Trailing1 (text(&quot;Second line&quot;) bg(green) width(2*))
+    Trailing0 (text(&quot;Third line&quot;) bg(blue))
+}
+<span class="boring">)}</span></code></pre>
 <h4 id="parameter-substitution"><a class="header" href="#parameter-substitution">Parameter substitution</a></h4>
 <blockquote>
 <p><strong>Note</strong>
-&quot;argument&quot; here may refer to two things: (1) the value passed as
+“argument” here may refer to two things: (1) the value passed as
 argument to a template, in <code>template!(foo_bar)</code>, <code>foo_bar</code> is an argument.
 (2) arguments passed to <em>methods</em>, in <code>Entity(text(method_argument))</code>,
 <code>method_argument</code> is a method argument.</p>
@@ -346,7 +402,8 @@ of the template body.</p>
 <tr><td>To avoid painfull breaking changes, avoid naming parameters the same as DSL methods or templates.</td></tr>
 </tbody></table>
 </div>
-<pre><code class="language-ron">fn button(button_text) {
+<pre><code class="language-rust ignore noplayground"><span class="boring">fn sys(cmds: &amp;mut EntityCommands) { dsl!(cmds,
+</span>fn button(button_text) {
     // Will spawn an entity without name, with tooltip set to whatever
     // was passed to `button!`.
     Entity(tooltip(button_text) width(95%) height(200px) bg(purple) row) {
@@ -359,10 +416,30 @@ of the template body.</p>
         Gizmo(gizmo(GizmoBuilder(button_text), button_text) rules(0.5*, 0.5*))
     }
 }
-</code></pre>
+<span class="boring">)}</span></code></pre>
 <h3 id="tips-and-tricks"><a class="header" href="#tips-and-tricks">Tips and tricks</a></h3>
-<p>See the <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl_impl/index.html">dedicated documentation page</a> for all available
+<p>See the <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/index.html">dedicated documentation page</a> for all available
 configuration options on <code>parse_dsl_impl</code>.</p>
+<h4 id="performance"><a class="header" href="#performance">Performance</a></h4>
+<p>Consider explicitly depending on the <code>log</code> and <code>tracing</code> crates, and enable the
+<code>&quot;release_max_level_debug&quot;</code> features of those crates, so that log messages are
+elided from release builds.</p>
+<p><code>cuicui_chirp</code> contains <strong>a lot</strong> of trace logging in very hot loops.
+<code>&quot;release_max_level_debug&quot;</code> will remove trace logging <strong>at compile time</strong> and
+not only make the code faster (code that would otherwise read a lock atomic),
+but it enables <strong>more optimization</strong>, inlining and loop unrolling.</p>
+<p>First, find the version of the <code>log</code> and <code>tracing</code> crates in your dependency tree with:</p>
+<pre><code class="language-sh">cargo tree -p log -p tracing
+</code></pre>
+<p>Then, add them to your <code>Cargo.toml</code> and enable a <code>max_level</code> feature. Note
+that they are already in your dependency tree, so there is no downside to doing so:</p>
+<pre><code class="language-toml">log = { version = &quot;&lt;version found with `cargo tree`&gt;&quot;, features = [&quot;release_max_level_debug&quot;] }
+tracing = { version = &quot;&lt;version found with `cargo tree`&gt;&quot;, features = [&quot;release_max_level_debug&quot;] }
+# Note: I recommend `release_max_level_warn` instead.
+# `debug` is specific for performance regarding `cuicui_chirp`
+</code></pre>
+<p>Next time you compile your game, you’ll probably have to recompile the whole
+dependency tree, since <code>tracing</code> and <code>log</code> are usually fairly deep.</p>
 <h4 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h4>
 <p>Remember the inheritance trick from <a href="https://lib.rs/crates/cuicui_dsl#inheritance"><code>cuicui_dsl</code></a>? <code>parse_dsl_impl</code> is
 compatible with it. Use the <code>delegate</code> argument to specify the field to which
@@ -375,15 +452,15 @@ to delegate methods not found on the <code>MyDsl</code> impl.</p>
 impl&lt;D: DslBundle&gt; MyDsl&lt;D&gt; {
     // ...
 }</code></pre>
-<p>See <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>parse_dsl_impl::delegate</code></a>.</p>
+<p>See <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>parse_dsl_impl::delegate</code></a>.</p>
 <h4 id="reflectdsl"><a class="header" href="#reflectdsl"><code>ReflectDsl</code></a></h4>
 <p>Unlike <code>cuicui_dsl</code>, it is possible to use <a href="https://docs.rs/bevy/0.11/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a> to define DSLs. See the
-<a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/reflect/struct.ReflectDsl.html"><code>ReflectDsl</code></a> docs for details.</p>
+<a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/reflect/struct.ReflectDsl.html"><code>ReflectDsl</code></a> docs for details.</p>
 <h4 id="custom-parsers"><a class="header" href="#custom-parsers">Custom parsers</a></h4>
 <p>Since <code>.chirp</code> files are in text format, we need to convert text into method
 arguments. <code>parse_dsl_impl</code> parses differently method arguments depending on
 their type.</p>
-<p>See [<code>parse_dsl_impl::type_parsers</code>] for details.</p>
+<p>See <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse_dsl_impl/fn.type_parsers.html"><code>parse_dsl_impl::type_parsers</code></a> for details.</p>
 <h2 id="what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp"><a class="header" href="#what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp">What is the relationship between <code>cuicui_dsl</code> and <code>cuicui_chirp</code>?</a></h2>
 <p><code>cuicui_dsl</code> is a macro (<code>dsl!</code>), while <code>cuicui_chirp</code> is a scene file format,
 parser and bevy loader. <code>cuicui_chirp</code> builds on top of <code>cuicui_dsl</code>, and has
@@ -398,6 +475,7 @@ different features than <code>cuicui_dsl</code>. Here is a feature matrix:</p>
 <tr><td>reflection-based methods</td><td></td><td>✅</td></tr>
 <tr><td>special syntax for colors, rules</td><td></td><td>✅</td></tr>
 <tr><td>lightweight</td><td>✅</td><td></td></tr>
+<tr><td>Allows for non-<code>Reflect</code> components</td><td>✅</td><td></td></tr>
 </tbody></table>
 </div>
 <p>You may use <code>cuicui_dsl</code> in combination with <code>cuicui_chirp</code>, both crates fill

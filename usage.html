@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="usage.html" class="active"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="usage.html" class="active"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -175,13 +176,13 @@
 <p>For illustration, we assume that we went with <code>cuicui_layout_bevy_ui</code>.</p>
 <h2 id="adding-the-selected-crates"><a class="header" href="#adding-the-selected-crates">Adding the selected crates</a></h2>
 <pre><code class="language-toml">[dependencies]
-cuicui_layout_bevy_ui = &quot;0.10.0&quot;
-cuicui_layout = &quot;0.10.0&quot;
-cuicui_dsl = &quot;0.10.0&quot;
+cuicui_layout_bevy_ui = &quot;0.10.1&quot;
+cuicui_layout = &quot;0.10.1&quot;
+cuicui_dsl = &quot;0.10.1&quot;
 </code></pre>
-<h2 id="using-the-dsl-macro"><a class="header" href="#using-the-dsl-macro">Using the <code>dsl!</code> macro</a></h2>
-<p>That's it! You are now using <code>cuicui_layout</code>, congratulations!</p>
-<p>Check the next two sections for actual rust code!</p>
+<h2 id="using-the-cuicui-crates"><a class="header" href="#using-the-cuicui-crates">Using the cuicui crates</a></h2>
+<p>That’s it! You are now using <code>cuicui_layout</code>, congratulations!</p>
+<p>Check the next chapters for actual rust code!</p>
 
                     </main>
 

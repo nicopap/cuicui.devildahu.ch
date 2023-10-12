@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html" class="active"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html" class="active"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -173,10 +174,14 @@
                     <main>
                         <h1 id="define-a-menu-using-a-chirp-file"><a class="header" href="#define-a-menu-using-a-chirp-file">Define a menu using a chirp file</a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
-<blockquote>
-<p><strong>Note</strong>
-This section is abbridged and might go in much more details in the future.</p>
-</blockquote>
+<p>We will now use <code>cuicui_chirp</code> to define the UI. To do so, we need to add it
+as a dependency first:</p>
+<pre><code class="language-toml">[dependencies]
+# previous dependencies
+# ...
+# New dependency:
+cuicui_chirp = &quot;0.10.1&quot;
+</code></pre>
 <p>The app setup requires adding <code>cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;()</code>,
 we also setup hot reloading by setting the asset plugin.</p>
 <pre><code class="language-rust no_run noplayground">    App::new()
@@ -187,48 +192,186 @@ we also setup hot reloading by setting the asset plugin.</p>
                 AssetPlugin { asset_folder, watch_for_changes }
             }),
             cuicui_layout_bevy_ui::Plugin,
-            bevy_inspector_egui::quick::WorldInspectorPlugin::default(),
-            // You still need to add manually the chirp loaded for UiDsl!
+            // You still need to add manually the asset loader for UiDsl!
             cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;(),
         ))
         .add_systems(Startup, setup)
         .run();</code></pre>
-<p>The setup, however, is completely trivial, since it is now the loading plugin
-that takes care of spawning the UI.</p>
+<p>The <code>setup</code> system, where we previously spawned the whole scene, is now
+completely trivial, we just spawn a single entity with a <code>ChirpBundle</code>.</p>
 <pre><code class="language-rust no_run noplayground">fn setup(mut cmds: Commands, serv: Res&lt;AssetServer&gt;) {
     cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));
 
     cmds.spawn(ChirpBundle::new(serv.load(&quot;chirp_menu.chirp&quot;)));
 }</code></pre>
-<p>Now, we write the <code>chirp</code> file in the <code>assets/</code> folder.</p>
-<p>This is fairly close to a copy/paste of the one in ???, with the distinction
-that we use an <code>fn</code> template instead of a <code>code</code> block to avoid repetition for
-the menu buttons.</p>
-<pre><code class="language-ron">// file used in &lt;examples/chirp_menu/main.rs&gt;
-fn menu_button(txt) {
-    Entity(text(txt) font_size(30) named(txt) image(&quot;button.png&quot;) height(33px))
-}
-Root(layout(&quot;&gt;dSaS&quot;) screen_root main_margin(100) image(&quot;background.jpg&quot;)) {
-    Menu(rules(310px, 100%) main_margin(40) image(&quot;board.png&quot;) column) {
-        TitleCard(image(&quot;logo.png&quot;) width(100%))
-        TitleCard2(image(&quot;logo.png&quot;) width(50%))
-        Buttons(column rules(100%, 2*)) {
-            Entity(text(&quot;CONTINUE&quot;) font_size(30) named(&quot;CONTINUE&quot;) image(&quot;button.png&quot;) height(33px))
-            menu_button!(&quot;NEW GAME&quot;)
-            menu_button!(&quot;LOAD GAME&quot;)
-            menu_button!(&quot;SETTINGS&quot;)
-            menu_button!(&quot;ADDITIONAL CONTENT&quot;)
-            menu_button!(&quot;CREDITS&quot;)
-            menu_button!(&quot;QUIT GAME&quot;)
-        }
+<p><code>chirp_menu.chirp</code> is located the <code>assets/</code> folder.</p>
+<p>This chapter assumes you’ve read <a href="../simple_menu">the previous chapter</a>. We will
+use it as a base for this.</p>
+<p>So where to start? Well, let’s copy/past the code from the simple menu example
+into <code>chirp_menu.chirp</code> and see what happens:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
+    Column(column rules(px(100), pct(100)) main_margin(10.) image(&amp;board)) {
+        TitleCard(width(pct(100)) image(&amp;title_card))
+        TitleCard2(width(pct(50)) image(&amp;title_card))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;CONTINUE&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;NEW GAME&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;LOAD GAME&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;SETTINGS&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;ADDITIONAL CONTENT&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;CREDITS&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;QUIT GAME&quot;))
     }
-}
+}</code></pre>
+<p>Of course this doesn’t work! But here the error format is different. The game
+compiles, <code>cuicui_chirp</code> tries to load the file and displays errors it encountered
+instead of spawning a scene:</p>
+<pre><code class="language-text">Error:   × Failed to load 'Handle&lt;bevy_render::texture::image::Image&gt;' from file '&amp;button_bg':
+  │ No such file or directory (os error 2)
+    ╭─[chirp_menu.chirp:10:1]
+ 10 │         Entity(image(&amp;button_bg) width(pct(80)) text(&quot;ADDITIONAL CONTENT&quot;))
+ 11 │         Entity(image(&amp;button_bg) width(pct(80)) text(&quot;CREDITS&quot;))
+ 12 │         Entity(image(&amp;button_bg) width(pct(80)) text(&quot;QUIT GAME&quot;))
+    ·                      ──────────
+ 13 │     }
+ 14 │ }
+    ╰────
+  help: The error comes from the ParseDsl implementation.
+Error:   × Rule format was not recognized: 'pct(80)', rules end with '%', '*' or 'px'.
+  │ Examples: '53%', '0.35*' and '1024px'
+    ╭─[chirp_menu.chirp:10:1]
+ 10 │         Entity(image(&amp;button_bg) width(pct(80)) text(&quot;ADDITIONAL CONTENT&quot;))
+ 11 │         Entity(image(&amp;button_bg) width(pct(80)) text(&quot;CREDITS&quot;))
+ 12 │         Entity(image(&amp;button_bg) width(pct(80)) text(&quot;QUIT GAME&quot;))
+    ·                                        ───────
+ 13 │     }
+ 14 │ }
+    ╰────
+  help: The error comes from the ParseDsl implementation.
 </code></pre>
-<p>Similarly to the <code>dsl</code>-based example, the documentation for which methods are
-available is on <code>docs.rs</code> (or your local copy with <code>cargo doc</code>) for <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
-and <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>.</p>
-<p>Try running the <code>chirp_menu</code> example and modifying <code>chirp_menu.chirp</code> to see
-how it affects the layout!</p>
+<p>The part of the error message we are the most interested in is the bit of text after <code>Error</code>:</p>
+<blockquote>
+<p>× Failed to load ‘Handle&lt;bevy_render::texture::image::Image&gt;’ from file ‘&amp;button_bg’:<br>
+│ No such file or directory (os error 2)</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>× Rule format was not recognized: ‘pct(80)’, rules end with ‘%’, ‘*’ or ‘px’.<br>
+│ Examples: ‘53%’, ‘0.35*’ and ‘1024px’</p>
+</blockquote>
+<p>Don’t close the window! Chirp files are hot-reloadable, you can edit the file
+and see the effect live.</p>
+<p>We have two kind of errors here:</p>
+<ol>
+<li>Argument to the <code>image</code> method.</li>
+<li>Argument to <code>width</code> and <code>rule</code>.</li>
+</ol>
+<p>For (1), <strong>methods that accept a <code>Handle&lt;T&gt;</code> in rust accept a string argument
+in chirp files</strong>. For (2), chirp files use the
+<code>FromStr</code> implementation on <code>Rule</code> to parse them, again, as the error message
+states.</p>
+<p>So let’s replace the variables from the DSL example with the file path and
+change the syntax on rules:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50) image(&quot;background.jpg&quot;)) {
+    Column(column rules(100px, 100pct) main_margin(10) image(&quot;board.png&quot;)) {
+        TitleCard(width(100pct) image(&quot;logo.png&quot;))
+        TitleCard2(width(50pct) image(&quot;logo.png&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;CONTINUE&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;NEW GAME&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;LOAD GAME&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;SETTINGS&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;ADDITIONAL CONTENT&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;CREDITS&quot;))
+        Entity(image(&quot;button.png&quot;) width(80%) text(&quot;QUIT GAME&quot;))
+    }
+}</code></pre>
+<p>Save the file and …</p>
+<p>New set of errors, but not as many.
+We forgot to convert <code>pct</code> to <code>%</code> in some places. Let’s fix this and save again.</p>
+<p><img src="../../chirp_menu_gallery/first_attempt.jpg" alt="The scene from simple menu, now loaded" /></p>
+<details><summary><b>Rules syntax by context</b></summary>
+<p>So how to write <code>cuicui_layout</code> rules? Here is a table:</p>
+<p>Note that <code>pct</code>, <code>child</code> and <code>px</code> are <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/index.html#functions"><strong>rust functions</strong></a>
+and must be imported.</p>
+<div class="table-wrapper"><table><thead><tr><th><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html"><code>Rule</code></a></th><th>in <code>dsl!</code></th><th>in chirp</th></tr></thead><tbody>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html#variant.Children"><code>Children</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/fn.child.html"><code>child</code></a></td><td><code>2*</code></td></tr>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html#variant.Parent"><code>Parent</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/fn.pct.html"><code>pct</code></a></td><td><code>95%</code></td></tr>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html#variant.Fixed"><code>Fixed</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/fn.px.html"><code>px</code></a></td><td><code>120px</code></td></tr>
+</tbody></table>
+</div></details>
+<h3 id="templates"><a class="header" href="#templates">Templates</a></h3>
+<p>This is already good. And it was much faster than before! Didn’t even need to
+close and re-open the game once!</p>
+<p>But, as before, we’d like to make this shorter. To do this, we’ll extract the button
+entity into a <strong>template definition</strong>. In chirp, you define templates at the
+beginning of the file with the <code>fn</code> keyword, and you use them like you would use
+a rust macro:</p>
+<pre><code class="language-rust no_run noplayground">// Define a template
+fn button() {
+    Button(image(&quot;button.png&quot;) width(80%) text(&quot;Button&quot;))
+}
+Root(screen_root row distrib_start main_margin(50) image(&quot;background.jpg&quot;)) {
+    Column(column rules(150px, 100%) main_margin(10) image(&quot;board.png&quot;)) {
+        TitleCard(width(100%) image(&quot;logo.png&quot;))
+        TitleCard2(width(50%) image(&quot;logo.png&quot;))
+        // Call it like a rust macro
+        button!()
+        button!()
+        button!()
+        button!()
+        button!()
+        button!()
+        button!()
+    }
+}</code></pre>
+<p>Again, all you need to do is hit the save shortcut in your text editor, and
+the changes show up directly on screen. (Or errors in the terminal, if any)</p>
+<p><img src="../../chirp_menu_gallery/button_button.jpg" alt="All buttons now have the “Button” text" /></p>
+<h3 id="template-arguments"><a class="header" href="#template-arguments">Template arguments</a></h3>
+<p>Well, we still want to have different names per button. Miracle, templates support
+<strong>parameters</strong>. They are like argument to rust functions:</p>
+<pre><code class="language-rust no_run noplayground">// button_text is a parameter
+fn button(button_text) {
+    //     'named' allows us to set the entity name dynamically
+    //     vvvvv   We can use the template parameter as argument to methods
+    //     vvvvv vvvvvvvvvvv                                      vvvvvvvvvvv
+    Entity(named(button_text) image(&quot;button.png&quot;) width(80%) text(button_text))
+}</code></pre>
+<p>And when calling the template, we pass an argument:</p>
+<pre><code class="language-rust no_run noplayground">        TitleCard(width(100%) image(&quot;logo.png&quot;))
+        TitleCard2(width(50%) image(&quot;logo.png&quot;))
+        // just pass the button name as argument
+        button!(&quot;CONTINUE&quot;)
+        button!(&quot;NEW GAME&quot;)
+        button!(&quot;LOAD GAME&quot;)
+        button!(&quot;SETTINGS&quot;)
+        button!(&quot;ADDITIONAL CONTENT&quot;)
+        button!(&quot;CREDITS&quot;)
+        button!(&quot;QUIT GAME&quot;)</code></pre>
+<h4 id="template-parameter-substitution-rules"><a class="header" href="#template-parameter-substitution-rules">Template parameter substitution rules</a></h4>
+<p>Currently, it is not possible to use template parameters everywhere.
+See <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/index.html#parameter-substitution">limitations</a>.</p>
+<h3 id="template-extras"><a class="header" href="#template-extras">Template extras</a></h3>
+<p>Now we want each button to have a different color. There are seven of them, like
+the seven dwarfes, <del>the seven fingers of the hand</del>, and seven colors of the rainbow!</p>
+<p>We could add a second parameter to our template, but instead, we’ll use a method extra:</p>
+<pre><code class="language-rust no_run noplayground">        button!(&quot;CONTINUE&quot;)(bg(red))
+        button!(&quot;NEW GAME&quot;)(bg(orange))
+        button!(&quot;LOAD GAME&quot;)(bg(yellow))
+        button!(&quot;SETTINGS&quot;)(bg(green))
+        button!(&quot;ADDITIONAL CONTENT&quot;)(bg(cyan))
+        button!(&quot;CREDITS&quot;)(bg(blue))
+        button!(&quot;QUIT GAME&quot;)(bg(violet))</code></pre>
+<p><img src="../../chirp_menu_gallery/rainbow.jpg" alt="Now the buttons’s outline are varycolored" /></p>
+<p>A bit ugly. We should make <code>&quot;button.png&quot;</code> white so that it mixes with the rainbow
+colors correctly.</p>
+<p>In the chirp file, what happens here is that we are adding the <code>bg(color)</code> method
+to the entity spawned by <code>button!</code>. In effect <code>button!(&quot;CREDITS&quot;)(bg(blue))</code>,
+if we expand the template, becomes:</p>
+<pre><code class="language-rust no_run noplayground">//                                 bg(blue) method is added to the end vvvvvvvv
+Entity(named(&quot;CREDITS&quot;) image(&quot;button.png&quot;) width(80%) text(&quot;CREDITS&quot;) bg(blue))</code></pre>
+<p>Template extras also work with children nodes, within <code>{}</code>.</p>
+<p>And that’s pretty much it when it comes to <code>cuicui_chirp</code>. Next, we will
+add a bit of interactivity.</p>
 
                     </main>
 
@@ -238,7 +381,7 @@ how it affects the layout!</p>
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../../examples/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../examples/custom_dsl/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -252,7 +395,7 @@ how it affects the layout!</p>
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../../examples/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../examples/custom_dsl/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

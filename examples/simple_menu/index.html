@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Using the DSL directly - The Cuicui Book</title>
+        <title>Using the dsl macro - The Cuicui Book</title>
 
 
         <!-- Custom HTML head -->
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html" class="active"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/simple_menu/index.html" class="active"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,16 +172,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="define-a-menu-using-cuicui_layout_bevy_ui"><a class="header" href="#define-a-menu-using-cuicui_layout_bevy_ui">Define a menu using <code>cuicui_layout_bevy_ui</code></a></h1>
+                        <h1 id="define-a-menu-using-the-dsl-macro"><a class="header" href="#define-a-menu-using-the-dsl-macro">Define a menu using the <code>dsl!</code> macro</a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
 <p>We added previously <code>cuicui_dsl</code>, <code>cuicui_layout</code>, and <code>cuicui_layout_bevy_ui</code>
 to our <code>Cargo.toml</code>.</p>
-<p>Now let's write some rust code.</p>
+<p>Now let’s write some rust code.</p>
 <p>We first import the relevant stuff:</p>
 <pre><code class="language-rust no_run noplayground">use bevy::prelude::*;
-use cuicui_dsl::dsl;
+use cuicui_dsl::{dsl, EntityCommands};
 use cuicui_layout::{dsl_functions::*, LayoutRootCamera};
-use cuicui_layout_bevy_ui::UiDsl as Dsl;</code></pre>
+use cuicui_layout_bevy_ui::UiDsl;</code></pre>
 <p>Then, we initialize the bevy <code>app</code>, all standard bevy stuff.</p>
 <pre><code class="language-rust no_run noplayground">fn main() {
     App::new()
@@ -188,7 +189,6 @@ use cuicui_layout_bevy_ui::UiDsl as Dsl;</code></pre>
             DefaultPlugins,
             // Notice that we add the plugin here.
             cuicui_layout_bevy_ui::Plugin,
-            bevy_inspector_egui::quick::WorldInspectorPlugin::default(),
         ))
         .add_systems(Startup, setup)
         .run();
@@ -197,16 +197,12 @@ use cuicui_layout_bevy_ui::UiDsl as Dsl;</code></pre>
 with a different text. The buttons and menu all have a background, so we need
 a <code>Res&lt;AssetServer&gt;</code>.</p>
 <pre><code class="language-rust no_run noplayground">fn setup(mut cmds: Commands, serv: Res&lt;AssetServer&gt;) {</code></pre>
-<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
-on the viewport size. So let's spawn the camera with it:</p>
+<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
+on the viewport size. So let’s spawn the camera with it:</p>
 <pre><code class="language-rust no_run noplayground">    cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));</code></pre>
-<p>Now let's spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
-<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
+<p>Now let’s spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.1/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
+<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
 also available.</p>
-<blockquote>
-<p><strong>Note</strong>
-This section is abbridged and might go in much more details in the future.</p>
-</blockquote>
 <p>We want:</p>
 <ul>
 <li>A column menu with the <code>board.png</code> background offset from the left edge of the
@@ -215,21 +211,247 @@ screen by 100 pixels.</li>
 7 buttons. We would want some margin between the edges of the screen and
 the content of the coulmn, also between the button and the edge of the column.</li>
 </ul>
+<p>Let’s first start by setting up the column. We define the handles outside of
+the <code>dsl!</code> macor, for clarity:</p>
 <pre><code class="language-rust no_run noplayground">    let title_card = serv.load(&quot;logo.png&quot;);
     let bg = serv.load(&quot;background.jpg&quot;);
-    let board = serv.load(&quot;board.png&quot;);
-    let button = serv.load(&quot;button.png&quot;);
-
+    let board = serv.load(&quot;board.png&quot;);</code></pre>
+<p>Then we build the menu. We use the <code>dsl!</code> macro.</p>
+<ul>
+<li>As first parameter we specify the DSL we want to use, here we use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.1/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
+from <code>cuicui_layout_bevy_ui</code>, that we imported earlier.</li>
+<li>Then, we pass a <code>&amp;mut EntityCommands</code>, which we create by using <code>Commands::spawn_empty</code></li>
+<li>Finally, we start the definition of the UI scene.</li>
+</ul>
+<pre><code class="language-rust no_run noplayground">    dsl! {
+        &lt;UiDsl&gt;
+        &amp;mut cmds.spawn_empty(),</code></pre>
+<p>The first container should have a <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a> component, so that it always has
+the same size as the viewport with the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</p>
+<p>In the <code>LayoutDsl</code>,
+you add the screen root component by calling the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.screen_root"><code>LayoutDsl::screen_root</code></a> method.</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {</code></pre>
+<p>We use <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.row"><code>row</code></a>, because the <em>root</em> node is not the column, it is the “screen”,
+the container that will hold the column, and we want to position the column
+relative to the left side of the screen.</p>
+<p>Speaking of which, we use <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.distrib_start"><code>distrib_start</code></a>, so that the the first object is
+placed to the left of the container, the “start” of the distribution zone.</p>
+<p>The <code>image(&amp;bg)</code> is the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.1/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.image"><code>UiDsl::image</code></a> method, we pass to it the handle to the
+<code>&quot;background.jpg&quot;</code> image.</p>
+<p>If you have <a href="https://github.com/nicopap/cuicui_layout/blob/cuicui_layout_bevy_ui-v0.10.0/examples/simple_menu/main.rs">the example code</a> open in your IDE, you should be
+able to click on individual methods in the <code>dsl!</code> macro and jump to their source
+or see their documentation.</p>
+<p>We name the node <code>Root</code>, so that it’s easier to identify it using <code>bevy-inspector-egui</code>.
+Let’s see the result:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {
+    Column(column image(&amp;board))
+}</code></pre>
+<p><img src="../../simple_menu_gallery/distrib_start.jpg" alt="How the menu looks like currently" /></p>
+<p>Now let’s add the two logo images to the column.</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {
+    Column(column image(&amp;board)) {
+        TitleCard(image(&amp;title_card))
+        TitleCard2(image(&amp;title_card))
+    }
+}</code></pre>
+<p><img src="../../simple_menu_gallery/large_column.jpg" alt="The main menu, with the column, but it is way too large and overflows the screen size" /></p>
+<p>Ooops. Something bad happened here! Interestingly, <code>cuicui_layout</code> printed an
+error message. It noticed that the column overflowed its container. The error is:</p>
+<pre><code class="language-text">ERROR bevy_mod_sysfail: Node Root's width is overflowed by its children!
+Notes:
+- Root's inner size (excluding margins) is 640×360
+- There are 1 children of total width 877.5px.
+- The largest child is Column
+</code></pre>
+<p>So far, it doesn’t teach us anything that we didn’t know…</p>
+<h3 id="rules"><a class="header" href="#rules">Rules</a></h3>
+<p>The best way to diagnose this kind of errors is to set <strong>rules</strong> on the size of
+the responsible nodes.</p>
+<p><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.Rule.html"><code>Rule</code></a>s in <code>cuicui_layout</code> are size constraints on layout nodes. You can set
+rules on width and height independently. In the <code>LayoutDsl</code> DSL, you set
+constraints through <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.width"><code>width</code></a>, <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.height"><code>height</code></a>, or both at the same time with <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.rules"><code>rules</code></a>.</p>
+<p>The size of a container may be:</p>
+<ul>
+<li><strong>Fixed</strong> (using <code>px(pixels)</code>): it is set to a specific number of pixels.</li>
+<li><strong>Child-relative</strong> (using <code>child(ratio)</code>): The container size is equal to
+it’s children’s size on that axis TIMES <code>ratio</code> PLUS twice the margin of that axis
+(more on margins later).</li>
+<li><strong>Parent-relative</strong> (using <code>pct(percent)</code>): it is set to a given percent of
+it’s parent inner size<sup class="footnote-reference"><a href="#1">1</a></sup>.</li>
+</ul>
+<p>So here, we know that <code>Column</code> is too large for <code>Root</code>. So let’s limit its width to 100 pixels.
+We also want the column to span the whole height of the screen, so we will set its
+height to <code>pct(100)</code>.</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {
+    Column(column width(px(100)) height(pct(100)) image(&amp;board)) {
+        TitleCard(image(&amp;title_card))
+        TitleCard2(image(&amp;title_card))
+    }
+}</code></pre>
+<p>Let’s see the result:</p>
+<p><img src="../../simple_menu_gallery/fixed_width_column.jpg" alt="The main menu, with the column, but the images are still too large" /></p>
+<p>We now see the whole column, but the logos are still way too large. We get a new
+error message:</p>
+<pre><code class="language-text">ERROR bevy_mod_sysfail: Node Column's width is overflowed by its children!
+Notes:
+- Column's inner size (excluding margins) is 100×360
+- There are 2 children of total width 585px.
+- The largest child is TitleCard2
+</code></pre>
+<p>In the previous error message, the total width of <code>column</code> was 877.55px, in this,
+it is 100px, as we expected, but the children’s width is 585px, which is larger than 100
+since last time I checked.</p>
+<p>As a hint. Before we specified the size of <code>Column</code>, its rules were the default.
+The default rule for containers is <code>child(1.5)</code> (585 * 1.5 = ???).</p>
+<h3 id="content-size"><a class="header" href="#content-size">Content size</a></h3>
+<p>So our images are why we are overflowing the menu. But why is it so? Well, unlike
+container nodes, leaf nodes (nodes without children), if they have an image or text,
+get their size from the image’s or text’s size.</p>
+<p><code>logo.png</code> just so happens to be a 585px by 173px image. Hmm, 585 seems familiar…</p>
+<p>Leaf nodes, like container nodes, can have rule constraints, so let’s limit
+the size of the images:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {
+    Column(column rules(px(100), pct(100)) image(&amp;board)) {
+        TitleCard(width(pct(100)) image(&amp;title_card))
+        TitleCard2(width(pct(50)) image(&amp;title_card))
+    }
+}</code></pre>
+<p><img src="../../simple_menu_gallery/fixed_width_images.jpg" alt="The main menu, with the column, but the images are still too large" /></p>
+<p>We see no errors in the terminal. Still something haunts us. We only defined
+<em>the width</em>, how comes the height also changed?</p>
+<p>It is because, for leaf nodes containing images, if only one axis has a set rule,
+the other axis will try to keep aspect ratio with the set rule axis, so as not
+to distort the image.</p>
+<p>For example here, for <code>TitleCard</code>, we set the width to 100% of its parent, therefore
+100 pixels. So given that the size of <code>logo.png</code> is 585x173, if we set its width
+to 100, its height will be 29.6 pixels.</p>
+<h3 id="margin"><a class="header" href="#margin">Margin</a></h3>
+<p>I find the column to be too much to the left, so let’s add margin between the edge of
+the container and the first item on the <strong>main axis</strong><sup class="footnote-reference"><a href="#2">2</a></sup> using <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html#method.main_margin"><code>main_margin</code></a>:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
+    Column(column rules(px(100), pct(100)) main_margin(10.) image(&amp;board)) {
+// ...</code></pre>
+<p>Nice, much better. Note that margin is always symetrical. With <code>main_margin(50.)</code>,
+we added 50 pixels of margin to the left, but also to the right.</p>
+<p>The debug view displays the container margins using a light color. You enable
+the debug view by running your app with the <code>--features cuicui_layout/debug</code> flag.</p>
+<p>Check this out:</p>
+<p><img src="../../simple_menu_gallery/margin_debug.jpg" alt="The menu with the debug overlay enabled, shows outline of layout nodes" /></p>
+<p>In the screenshot, the <code>Root</code> container outlines the whole screen, with lime lines.
+Notice the lighter-colored lime lines at the left and right of the screen, those
+are the margins of the <code>Root</code> container. You see that the column is directly aligned
+with the start of the inside of the <code>Root</code>.</p>
+<p>Is this a victory? Only a small battle is won, the war is still ahead.
+We have to add our seven buttons.</p>
+<h3 id="code"><a class="header" href="#code">Code</a></h3>
+<p>For the buttons, we will need text. This is a <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.1/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> method, <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.1/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.text"><code>UiDsl::text</code></a>.</p>
+<p>We also want to use <code>button.png</code> as background for our buttons. We loaded it
+using <code>let button_bg = serv.load(&quot;button.png&quot;)</code>.</p>
+<p>So let’s proceed:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
+    Column(column rules(px(100), pct(100)) main_margin(10.) image(&amp;board)) {
+        TitleCard(width(pct(100)) image(&amp;title_card))
+        TitleCard2(width(pct(50)) image(&amp;title_card))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;CONTINUE&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;NEW GAME&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;LOAD GAME&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;SETTINGS&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;ADDITIONAL CONTENT&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;CREDITS&quot;))
+        Entity(image(&amp;button_bg) width(pct(80)) text(&quot;QUIT GAME&quot;))
+    }
+}</code></pre>
+<p><img src="../../simple_menu_gallery/first_buttons.jpg" alt="Main menu with buttons" /></p>
+<p>No errors! But very very ugly. Like wow:</p>
+<ul>
+<li>The column stretches to the whole screen, it makes the layout bottom hevy</li>
+<li>“ADDITIONAL CONTENT” height is twice as large as the other buttons, breaking the harmony.</li>
+<li>The code itself is ugly, we got a lot of repeating code.</li>
+</ul>
+<p>Well, on the estethic side, we can’t do much with those assets, but we can set the
+fixed width of the column to 150 pixels instead of 100.</p>
+<p>For code quality, we use an abstraction. Let’s define a function:</p>
+<pre><code class="language-rust no_run noplayground">fn button(cmds: &amp;mut EntityCommands, button_bg: &amp;Handle&lt;Image&gt;, button_text: &amp;'static str) {
     dsl! {
-        &amp;mut cmds.spawn_empty(),
-        Root(layout(&quot;&gt;dSaS&quot;) screen_root main_margin(100.) image(&amp;bg)) {
-            Menu(rules(px(310), pct(100)) main_margin(40.) image(&amp;board) column) {
-                TitleCard(image(&amp;title_card) width(pct(100)))
-                TitleCard2(ui(title_card) width(pct(50)))</code></pre>
-<p>Again, you can see what each method (the functions within parenthesis) do by
-checking the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> and <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> docs.</p>
-<p>We only spawned the two title cards, now we spawn the buttons. To do that, we
-will use a <code>code</code> block with a <code>for</code> loop</p>
+        &lt;UiDsl&gt; cmds,
+        Entity(text(button_text) named(button_text) image(button_bg) width(pct(80)))
+    }
+}</code></pre>
+<p>Don’t try to convert it into a closure! Rust’s type system can’t handle closures
+that accepts references of different lifetimes, and this will cause a lot of cryptic
+error messages.</p>
+<p>Now, let’s use the the <code>code</code> statement to call that function:</p>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
+    Column(column rules(px(150), pct(100)) main_margin(10.) image(&amp;board)) {
+        TitleCard(width(pct(100)) image(&amp;title_card))
+        TitleCard2(width(pct(50)) image(&amp;title_card))
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;CONTINUE&quot;) }
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;NEW GAME&quot;) }
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;LOAD GAME&quot;) }
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;SETTINGS&quot;) }
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;ADDITIONAL CONTENT&quot;) }
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;CREDITS&quot;) }
+        code(let cmds) { button(cmds, &amp;button_bg, &quot;QUIT GAME&quot;) }
+    }
+}</code></pre>
+<p>Not that much better reallly!</p>
+<p>But what are we looking at? <code>code</code> statements allow you to <em>inline rust code</em>
+within the <code>dsl!</code> macro.</p>
+<p>What if instead we defined the button names in a list and use a <code>for</code> loop inside
+the <code>code</code> statement?</p>
+<pre><code class="language-rust no_run noplayground">    let menu_buttons = [
+        &quot;CONTINUE&quot;,
+        &quot;NEW GAME&quot;,
+        &quot;LOAD GAME&quot;,
+        &quot;SETTINGS&quot;,
+        &quot;ADDITIONAL CONTENT&quot;,
+        &quot;CREDITS&quot;,
+        &quot;QUIT GAME&quot;,
+    ];</code></pre>
+<pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
+    Column(column rules(px(150), pct(100)) main_margin(10.) image(&amp;board)) {
+        TitleCard(width(pct(100)) image(&amp;title_card))
+        TitleCard2(width(pct(50)) image(&amp;title_card))
+        code(let cmds) {
+            for text in menu_buttons {
+                button(cmds, &amp;button_bg, text)
+            }
+        }
+    }
+}</code></pre>
+<p><img src="../../simple_menu_gallery/only_one_button.jpg" alt="Main menu, but only the “QUIT GAME” button exists" /></p>
+<p>Well, that’s bad. What happened?</p>
+<p>If you have the code open in your text editor, look at the type of <code>cmds</code> in <code>let cmds</code>.</p>
+<p>Can you guess why this is happening?</p>
+<p>You’ll notice it is an <code>&amp;mut EntityCommands</code>. What we are doing in that <code>for</code> loop
+is insert over and over our <code>UiDsl</code> on the same entity. This is why we end up with
+a single button.</p>
+<p><code>cuicui_dsl</code> passes <code>&amp;mut EntityCommands</code> to <code>code</code> blocks because as a rule, the cuicui DSL
+only allows a single entity per statement.</p>
+<p>But this doesn’t solve our problem, how would we spawn seven buttons with a
+<code>for</code> loop?</p>
+<p>The answer is to:</p>
+<ol>
+<li>Spawn a container for the buttons</li>
+<li>Spawn the buttons within that container</li>
+</ol>
+<pre><code class="language-rust no_run noplayground">                code(let cmds) {
+                    dsl! { &lt;UiDsl&gt; cmds,
+                        ButtonContainer(column rules(pct(100), pct(60)))
+                    };
+                    cmds.with_children(|cmds| {
+                        for text in menu_buttons {
+                            button(&amp;mut cmds.spawn_empty(), &amp;button_bg, text);
+                        }
+                    });
+                }</code></pre>
+<p><img src="../../simple_menu_gallery/buttons_in_container.jpg" alt="All the buttons are in the menu, but they are distributed unevenly" /></p>
+<p>We got back our seven buttons! The code did end up a bit more complex than the
+initial repeating code, but if your layout gets complex, this way of abstracting
+can get handy.</p>
+<p>So to finish it up, we still need to add some “empty space”
+at the bottom of the column and some margin for the logo.</p>
+<p>The final result:</p>
 <pre><code class="language-rust no_run noplayground">    let menu_buttons = [
         &quot;CONTINUE&quot;,
         &quot;NEW GAME&quot;,
@@ -239,33 +461,45 @@ will use a <code>code</code> block with a <code>for</code> loop</p>
         &quot;CREDITS&quot;,
         &quot;QUIT GAME&quot;,
     ];
-    let text = |value| Text::from_section(value, TextStyle { font_size: 30.0, ..default() });
+    let button_bg = serv.load(&quot;button.png&quot;);
     let title_card = serv.load(&quot;logo.png&quot;);
     let bg = serv.load(&quot;background.jpg&quot;);
     let board = serv.load(&quot;board.png&quot;);
-    let button = serv.load(&quot;button.png&quot;);
 
     dsl! {
+        &lt;UiDsl&gt;
         &amp;mut cmds.spawn_empty(),
-        Root(layout(&quot;&gt;dSaS&quot;) screen_root main_margin(100.) image(&amp;bg)) {
-            Menu(rules(px(310), pct(100)) main_margin(40.) image(&amp;board) column) {
-                TitleCard(image(&amp;title_card) width(pct(100)))
-                TitleCard2(ui(title_card) width(pct(50)))
+        Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
+            Column(image(&amp;board) rules(px(150), pct(100)) main_margin(10.) column) {
+                TitleCard(width(pct(100)) image(&amp;title_card))
+                TitleCard2(width(pct(50)) ui(title_card))
                 code(let cmds) {
-                    dsl!(cmds, Buttons(column height(child(2.)) width(pct(100))));
-                    cmds.with_children(|cmds|{
-                        for n in &amp;menu_buttons {
-                            let name = format!(&quot;{n} button&quot;);
-                            dsl!(
-                                &amp;mut cmds.spawn_empty(),
-                                Entity(ui(text(*n)) named(name) image(&amp;button) height(px(33)))
-                            );
+                    dsl! { &lt;UiDsl&gt; cmds,
+                        ButtonContainer(column rules(pct(100), pct(60)))
+                    };
+                    cmds.with_children(|cmds| {
+                        for text in menu_buttons {
+                            button(&amp;mut cmds.spawn_empty(), &amp;button_bg, text);
                         }
                     });
                 }
+                BottomSpacer(height(pct(15)))
             }
         }
     };</code></pre>
+<p><img src="../../simple_menu_gallery/final_result.jpg" alt="Main menu with balanced button distribution" /></p>
+<p>Woohoo! Time to treat yourself.</p>
+<p>Next, we will do this using <code>cuicui_chirp</code> and the chirp language.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>The <strong>main axis</strong> is the axis of direction of the container. For a <code>row</code>
+container, the main axis is the <code>x</code> axis. For a <code>column</code> container, it is the
+<code>y</code> axis. The <strong>cross axis</strong> is the axis perpendicular to the corss axis (so
+<code>y</code> for <code>row</code> containers and <code>x</code> for <code>column</code> containers)</p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>The “Inner size” is the size of a node deduced its margins on a given axis.
+It’s the effective size children can occupy, so we use that for percentage.</p>
+</div>
 
                     </main>
 

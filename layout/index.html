@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html" class="active"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html" class="active"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -183,16 +184,16 @@
 all default feature and have a bare-bone plugin that only adds layouting components
 and systems to your bevy game.</p>
 <p>However, <code>cuicui_layout</code> also integrates with <code>cuicui_dsl</code> and <code>cuicui_chirp</code>.</p>
-<p>See their respective documentation pages for why you'd want to use them as well.</p>
+<p>See their respective documentation pages for why you’d want to use them as well.</p>
 <ul>
 <li><a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a></li>
 <li><a href="https://lib.rs/crates/cuicui_chirp"><code>cuicui_chirp</code></a></li>
 </ul>
 <h2 id="when-to-use-cuicui_layout"><a class="header" href="#when-to-use-cuicui_layout">When to use <code>cuicui_layout</code>?</a></h2>
 <p><code>cuicui_layout</code> is always a better choice over Flexbox, the default bevy UI
-layouting algorithm. I'm however not claiming that it is better than other
+layouting algorithm. I’m however not claiming that it is better than other
 similar non-flexbox layouting algorithm.</p>
-<p>Here is some reasons you'd prefer <code>cuicui_layout</code> over other layouting
+<p>Here is some reasons you’d prefer <code>cuicui_layout</code> over other layouting
 algorithms:</p>
 <ul>
 <li>Friendly algo with less things to keep in your head and good defaults.</li>
@@ -201,7 +202,7 @@ algorithms:</p>
 <code>Transform</code> based on <code>LayoutRect</code>.</li>
 <li>Fully flexible and extensible, can be used with <code>bevy_ui</code>, <code>bevy_sprite</code>, your own stuff.</li>
 <li>Helpful and fully detailed error messages when things are incoherent or broken.
-As opposed to FlexBox, which goes &quot;this is fine 🔥🐶🔥&quot; and leaves you to guess
+As opposed to FlexBox, which goes “this is fine 🔥🐶🔥” and leaves you to guess
 why things do not turn out as expected.</li>
 <li>This is a single-pass algo, so more efficient than flexbox.</li>
 <li>An extensive debugging overlay.</li>
@@ -211,39 +212,39 @@ why things do not turn out as expected.</li>
 <ul>
 <li><strong><code>debug</code></strong>: Enable the debug overlay</li>
 <li><strong><code>reflect</code></strong> (default): Enable <code>bevy_reflect</code> impls for layout components.</li>
-<li><strong><code>chirp</code></strong> (default): Enable <a href="https://lib.rs/crates/cuicui_chirp">chirp</a> <a href="https://docs.rs/cuicui_chirp/0.10.0/cuicui_chirp/parse/trait.ParseDsl.html"><code>ParseDsl</code></a> implementation for <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a></li>
-<li><strong><code>dsl</code></strong> (default): Define and export <code>LayoutDsl</code> <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> impl for the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/macro.dsl.html"><code>dsl!</code></a> macro</li>
+<li><strong><code>chirp</code></strong> (default): Enable <a href="https://lib.rs/crates/cuicui_chirp">chirp</a> <a href="https://docs.rs/cuicui_chirp/0.10.1/cuicui_chirp/parse/trait.ParseDsl.html"><code>ParseDsl</code></a> implementation for <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a></li>
+<li><strong><code>dsl</code></strong> (default): Define and export <code>LayoutDsl</code> <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> impl for the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/macro.dsl.html"><code>dsl!</code></a> macro</li>
 </ul>
 <h3 id="layouting"><a class="header" href="#layouting">Layouting</a></h3>
 <p><code>cuicui_layout</code> exposes the following <a href="https://docs.rs/bevy/0.11/bevy/ecs/component/trait.Component.html"><code>Component</code></a>s to control layouting:</p>
 <ul>
-<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Node.html"><code>Node</code></a>: A layout node, either a container holding other nodes as bevy
+<li><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Node.html"><code>Node</code></a>: A layout node, either a container holding other nodes as bevy
 <a href="https://docs.rs/bevy/0.11/bevy/hierarchy/struct.Children.html"><code>Children</code></a> or a leaf node.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Root.html"><code>Root</code></a>: The root of a node hierarchy. You may have several, all computations
+<li><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.Root.html"><code>Root</code></a>: The root of a node hierarchy. You may have several, all computations
 start from the root.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a>: If you add this component to a <code>Root</code> entity, it will keep
-the same size as the camera with the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a>: If you add this component to a <code>Root</code> entity, it will keep
+the same size as the camera with the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</li>
 </ul>
-<p>See the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation for detailed explanation.</p>
-<p>In short: a <code>Node</code> has independent <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s on the <code>x</code> and <code>y</code> axis. When the
-node is a <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Container.html"><code>Container</code></a>, it also has additional properties that manages how
+<p>See the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation for detailed explanation.</p>
+<p>In short: a <code>Node</code> has independent <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s on the <code>x</code> and <code>y</code> axis. When the
+node is a <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.Container.html"><code>Container</code></a>, it also has additional properties that manages how
 children are distributed within the container.</p>
 <p>Those additional properties are:</p>
 <ul>
-<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Flow.html"><code>Flow</code></a>: The direction in which the children are distributed</li>
-<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Alignment.html"><code>Alignment</code></a>: Where on the cross axis are nodes aligned.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Distribution.html"><code>Distribution</code></a>: How to distribute the children of this container.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Flow.html"><code>Flow</code></a>: The direction in which the children are distributed</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Alignment.html"><code>Alignment</code></a>: Where on the cross axis are nodes aligned.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Distribution.html"><code>Distribution</code></a>: How to distribute the children of this container.</li>
 <li><code>margin</code>: How much margin to put on main and cross axis</li>
 </ul>
 <p>By default, items are aligned at the center of the container, distributed
 on the flow direction evenly within the container.</p>
 <p>A <code>Rule</code> tells the size of the <code>Node</code>, it can depend on the size of its children,
 the size of its parent or be a fixed value.</p>
-<p>There isn't more to it, that's pretty much all of <code>cuicui_layout</code>.
-If this wasn't clear enough please read the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation.</p>
+<p>There isn’t more to it, that’s pretty much all of <code>cuicui_layout</code>.
+If this wasn’t clear enough please read the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation.</p>
 <h3 id="content-sized"><a class="header" href="#content-sized">Content-sized</a></h3>
 <p>It is possible to size leaf nodes based on components present on the same entity.</p>
-<p>Use the <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/index.html"><code>content_sized</code></a> traits to do that.</p>
+<p>Use the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/content_sized/index.html"><code>content_sized</code></a> traits to do that.</p>
 <h3 id="debugging"><a class="header" href="#debugging">Debugging</a></h3>
 <p><code>cuicui_layout</code> has an integrated debugger. Enable it with the <code>cuicui_layout/debug</code>
 cargo feature.</p>
@@ -257,28 +258,28 @@ Bevy, even with hot reloading or <a href="https://docs.rs/bevy-inspector-egui/la
 will always have extremely slow visual feedback.</p>
 <p>Flexbox has too many parameters and depends on implicit properties of UI elements,
 it is not possible to emulate it in your head.</p>
-<p>cuicui's layout, in contrast to Flexbox is easy to fit in your head.
-In fact, I will forecefully push cuicui's layout algorithm in your head
+<p>cuicui’s layout, in contrast to Flexbox is easy to fit in your head.
+In fact, I will forecefully push cuicui’s layout algorithm in your head
 in two short bullet points.</p>
 <ul>
 <li>A node can be a <code>Node::Container</code> and distribute its children
 along a <code>Direction</code> either by evenly spacing them (<code>Distribution::FillMain</code>)
 or putting them directly one after another (<code>Distribution::Start</code>).</li>
-<li>A <code>Container</code>'s size can be expressed as a static value, a fraction
+<li>A <code>Container</code>’s size can be expressed as a static value, a fraction
 of the size of what contains it, or a multiple of what it contains.</li>
 <li>The content of a <code>Container</code> can be <code>Alignment</code> to the start, end or center
-of its parent (by default it's centered).</li>
+of its parent (by default it’s centered).</li>
 </ul>
-<p>That's it. There are some edge cases, but cuicui will <del>yell at you</del>
+<p>That’s it. There are some edge cases, but cuicui will <del>yell at you</del>
 tell you nicely when you hit them and tell you how to handle them properly.</p>
 <h3 id="flexbox-faq"><a class="header" href="#flexbox-faq">Flexbox FAQ</a></h3>
 <p><strong>Q</strong>: Where is <code>padding</code>?
 <br><strong>A</strong>: <code>padding</code> is equivalent to <code>margin</code> in cuicui_layout. <code>margin</code> and <code>border</code>
-doesn't make conceptual sense.</p>
+doesn’t make conceptual sense.</p>
 <p><strong>Q</strong>: Why not call it <code>padding</code> then?
-<br><strong>A</strong>: Look at the dictionary definition of &quot;margin&quot; and &quot;padding&quot;.</p>
+<br><strong>A</strong>: Look at the dictionary definition of “margin” and “padding”.</p>
 <p><strong>Q</strong>: How do I center a node?
-<br><strong>A</strong>: nodes are centered by default, make sure the parent's container size
+<br><strong>A</strong>: nodes are centered by default, make sure the parent’s container size
 has the expected size.</p>
 <p><strong>Q</strong>: What is the equivalent of <code>flex_direction</code>?
 <br><strong>A</strong>: use <code>row</code> and <code>column</code></p>
@@ -291,11 +292,11 @@ paramount and internationalization needs to be taken as a whole in the context o
 <br><strong>A</strong>: None, do you really need it?</p>
 <p><strong>Q</strong>: What is the equivalent of <code>align_item</code>, <code>align_self</code>, <code>align_content</code>, <code>justify_content</code>?
 <br><strong>A</strong>: After 5 years of working with CSS, I still have no clue which one does what,
-and whether they really do anything, so I won't adventure an asnwer.</p>
+and whether they really do anything, so I won’t adventure an asnwer.</p>
 <p><strong>Q</strong>: What is the equivalent of <code>flex_grow</code>, <code>flex_shrink</code>, <code>flex_basis</code>, <code>gap</code>?
 <br><strong>A</strong>: Do you even know what they do?</p>
-<p><strong>Q</strong>: Why can't child container overflow their parents?
-<br><strong>A</strong>: It's likely you didn't expect this, so we report it as an error.</p>
+<p><strong>Q</strong>: Why can’t child container overflow their parents?
+<br><strong>A</strong>: It’s likely you didn’t expect this, so we report it as an error.</p>
 <p><strong>Q</strong>: How do I make a grid?
 <br><strong>A</strong>: <code>cuicui_layout</code> is currently not capable of managing a grid of nodes.
 This might be added in the future.</p>

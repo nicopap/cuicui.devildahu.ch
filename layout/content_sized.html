@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="rust" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -36,7 +37,7 @@
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             var body = document.querySelector('body');
             body.classList.remove('no-js')
@@ -88,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the DSL directly</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html" class="active"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../choosing_a_cuicui_crate.html"><strong aria-hidden="true">1.</strong> Choosing a cuicui crate</a></li><li class="chapter-item expanded "><a href="../usage.html"><strong aria-hidden="true">2.</strong> Usage</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/simple_menu/index.html"><strong aria-hidden="true">2.1.</strong> Using the dsl macro</a></li><li class="chapter-item expanded "><a href="../../examples/chirp_menu/index.html"><strong aria-hidden="true">2.2.</strong> Using a chirp file</a></li><li class="chapter-item expanded "><a href="../../examples/custom_dsl/index.html"><strong aria-hidden="true">2.3.</strong> Defining your own DSL</a></li><li class="chapter-item expanded "><a href="../reactivity.html"><strong aria-hidden="true">2.4.</strong> Reactivity</a></li></ol></li><li class="chapter-item expanded "><a href="../../examples/index.html"><strong aria-hidden="true">3.</strong> Examples</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../examples/chirpunk/index.html"><strong aria-hidden="true">3.1.</strong> chirpunk</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../../dsl/index.html"><strong aria-hidden="true">4.</strong> cuicui_dsl</a></li><li class="chapter-item expanded "><a href="../../chirp/index.html"><strong aria-hidden="true">5.</strong> cuicui_chirp</a></li><li class="chapter-item expanded "><a href="../../layout/index.html"><strong aria-hidden="true">6.</strong> cuicui_layout</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../layout/debug.html"><strong aria-hidden="true">6.1.</strong> Layout debug overlay</a></li><li class="chapter-item expanded "><a href="../../layout/content_sized.html" class="active"><strong aria-hidden="true">6.2.</strong> Content-sized leaf nodes</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -172,25 +173,25 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="cuicui_layout-content-sized-nodes"><a class="header" href="#cuicui_layout-content-sized-nodes"><code>cuicui_layout</code> Content sized nodes</a></h1>
-<p>Leaf nodes (nodes that do not contain other nodes) may be &quot;content-sized&quot;.</p>
+<p>Leaf nodes (nodes that do not contain other nodes) may be “content-sized”.</p>
 <p>For example, in <code>cuicui_layout_bevy_ui</code>, a leaf node containing an image may
 keep the same aspect ratio as the image.</p>
 <h2 id="how-to-define-content-sized-elements"><a class="header" href="#how-to-define-content-sized-elements">How to define content-sized elements?</a></h2>
 <p>First off, if you are already using <code>cuicui_layout_bevy_ui</code> or
-<code>cuicui_layout_bevy_sprite</code>, <strong>you don't need to do anything</strong>, those plugins
+<code>cuicui_layout_bevy_sprite</code>, <strong>you don’t need to do anything</strong>, those plugins
 already take care of elements that should depend on the size of their content.</p>
 <p>If you need to implement content-sized elements for your own UI stuff, you will
 need to:</p>
 <ol>
 <li>Define a <a href="https://docs.rs/bevy/0.11/bevy/ecs/system/trait.SystemParam.html"><code>SystemParam</code></a> (we will refer to it as <code>MyContentSize</code>)</li>
-<li>Implement <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/trait.ComputeContentParam.html"><code>ComputeContentParam</code></a> for <code>MyContentSize</code>
+<li>Implement <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/content_sized/trait.ComputeContentParam.html"><code>ComputeContentParam</code></a> for <code>MyContentSize</code>
 <ul>
-<li>In <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#associatedtype.Components"><code>ComputeContentParam::Components</code></a>, tell which components are used to
+<li>In <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/content_sized/trait.ComputeContentParam.html#associatedtype.Components"><code>ComputeContentParam::Components</code></a>, tell which components are used to
 tell content size. Use <a href="https://docs.rs/bevy/0.11/bevy/ecs/prelude/struct.AnyOf.html"><code>AnyOf</code></a> if several.</li>
-<li>In <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#tymethod.condition"><code>ComputeContentParam::condition</code></a>, tell when the size update system should run</li>
+<li>In <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/content_sized/trait.ComputeContentParam.html#tymethod.condition"><code>ComputeContentParam::condition</code></a>, tell when the size update system should run</li>
 </ul>
 </li>
-<li>Implement <code>ComputeContentSize</code> for <code>MyContentSize</code>. <a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/trait.ComputeContentSize.html#tymethod.compute_content"><code>ComputeContentSize::compute_content</code></a>
+<li>Implement <code>ComputeContentSize</code> for <code>MyContentSize</code>. <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/content_sized/trait.ComputeContentSize.html#tymethod.compute_content"><code>ComputeContentSize::compute_content</code></a>
 is ran for each leaf node <a href="https://docs.rs/bevy/0.11/bevy/ecs/prelude/struct.Entity.html"><code>Entity</code></a> with the provided components.
 <ul>
 <li>The sizes infered by the layouting algorithm is passed as the <code>set_size</code>
@@ -201,9 +202,9 @@ of the return value.</li>
 </ul>
 </li>
 <li>Register <code>MyContentSize</code> as a content sized element computation using
-<a href="https://docs.rs/cuicui_layout/0.10.0/cuicui_layout/content_sized/trait.AppContentSizeExt.html#tymethod.add_content_sized"><code>app.add_content_sized::&lt;MyContentSize&gt;()</code></a>.</li>
+<a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/content_sized/trait.AppContentSizeExt.html#tymethod.add_content_sized"><code>app.add_content_sized::&lt;MyContentSize&gt;()</code></a>.</li>
 </ol>
-<p>And that's it!</p>
+<p>And that’s it!</p>
 <p>The two distinct traits are required due to a limitation in the rust type system.
 Trying to merge the two traits came close to unleashing Cthulhu into the world.
 Do not ask me to merge them, do not open an issue for merging them, this way
