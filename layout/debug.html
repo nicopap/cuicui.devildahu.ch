@@ -191,10 +191,10 @@ and node sizes.</p>
 <p>There are several view modes, you cycle through them by pressing the space bar:</p>
 <ul>
 <li><strong>nothing</strong> (default): There is no additional informations displayed</li>
-<li><strong>outlines</strong>: Displays the outline of each <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/struct.Container.html"><code>Container</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Node.html"><code>Node</code></a> visible
+<li><strong>outlines</strong>: Displays the outline of each <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/struct.Container.html"><code>Container</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/enum.Node.html"><code>Node</code></a> visible
 on screen, with a different color</li>
 <li><strong>outlines and rules</strong>: In addition to the outline, display each node’s vertical
-and horizontal <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s.
+and horizontal <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s.
 <ul>
 <li>Arrows pointing outwards left and right mean the horizontal size (width) depends on
 the size of the parent of the node.</li>
@@ -206,17 +206,17 @@ the size of the children of the node.</li>
 </li>
 </ul>
 <h3 id="debug-view-configuration"><a class="header" href="#debug-view-configuration">Debug view configuration</a></h3>
-<p>The debug view can be programmatically manipulated using the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/debug/struct.Options.html"><code>Options</code></a> <a href="https://docs.rs/bevy/0.11/bevy/ecs/prelude/trait.Resource.html"><code>Resource</code></a>.</p>
+<p>The debug view can be programmatically manipulated using the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/debug/struct.Options.html"><code>Options</code></a> <a href="https://docs.rs/bevy/0.11/bevy/ecs/prelude/trait.Resource.html"><code>Resource</code></a>.</p>
 <h4 id="display-invisible-layouts"><a class="header" href="#display-invisible-layouts">Display invisible layouts</a></h4>
 <p>The debug view does not display information about <code>Container</code>s with
 a <code>ComputedVisibility</code> component returning <code>vis.is_visible() == false</code>.</p>
-<p>Set the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/debug/struct.Options.html#structfield.show_hidden"><code>Options.show_hidden</code></a> field to <code>true</code> to display outlines even if the
+<p>Set the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/debug/struct.Options.html#structfield.show_hidden"><code>Options.show_hidden</code></a> field to <code>true</code> to display outlines even if the
 <code>ComputedVisibility</code> is <code>false</code>.</p>
 <h4 id="changeremove-the-cycling-key"><a class="header" href="#changeremove-the-cycling-key">Change/Remove the cycling key</a></h4>
 <p>Maybe your game makes heavy use of the space key (I’ve heard that some plateformers use
 the space key for a common action, would you belive it?) and you don’t want to cycle
 through the debug views each time space is pressed.</p>
-<p>You can set the <a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/debug/struct.Options.html#structfield.input_map"><code>Options.input_map</code></a> value to something else:</p>
+<p>You can set the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/debug/struct.Options.html#structfield.input_map"><code>Options.input_map</code></a> value to something else:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(feature = &quot;cuicui_layout/debug&quot;)]
@@ -228,7 +228,7 @@ fn debug_toggle(mut opts: ResMut&lt;cuicui_layout::debug::Options&gt;) {
 <p>Confusingly, <code>bevy_ui</code> has a downward Y axis, while <code>bevy_sprite</code> has an upward
 Y axis.</p>
 <p>You can configure what Y axis direction the debug overlay uses by setting the
-<a href="https://docs.rs/cuicui_layout/0.10.1/cuicui_layout/debug/struct.Options.html#structfield.screen_space"><code>Options.screen_space</code></a> field.</p>
+<a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/debug/struct.Options.html#structfield.screen_space"><code>Options.screen_space</code></a> field.</p>
 <p>If you are using <code>cuicui_layout_bevy_ui</code>, this should be automatically set to
 <code>true</code> for you.</p>
 

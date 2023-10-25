@@ -175,8 +175,8 @@
                         <h1 id="cuicui_dsl"><a class="header" href="#cuicui_dsl"><code>cuicui_dsl</code></a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a>
 <a href="https://docs.rs/cuicui_dsl/"><img src="https://docs.rs/cuicui_dsl/badge.svg" alt="Documentation" /></a></p>
-<p><code>cuicui_dsl</code> is a crate exposing a single trait (<a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a>) and
-a single macro (<a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a>) to define bevy scenes within rust code.</p>
+<p><code>cuicui_dsl</code> is a crate exposing a single trait (<a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a>) and
+a single macro (<a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a>) to define bevy scenes within rust code.</p>
 <p>It is used in <code>cuicui</code> for UI, but can be used for any kind of scene.</p>
 <h2 id="when-to-use-cuicui_dsl"><a class="header" href="#when-to-use-cuicui_dsl">When to use <code>cuicui_dsl</code>?</a></h2>
 <ul>
@@ -243,9 +243,16 @@ fn setup(mut cmds: Commands) {
     };
 }
 <span class="boring">}</span></code></pre></pre>
+<blockquote>
+<p><strong>Documentation</strong></p>
+<p>Methods available in the <code>dsl!</code> macro are the methods available in the choosen
+DSL type (in this case, it would be the <code>MyDsl</code> methods). Check the documentation
+page for the corresponding type you are using as DSL. All methods that accept
+an <code>&amp;mut self</code> are candidate.</p>
+</blockquote>
 <p>This seems a bit verbose, that’s because you should be using <a href="https://docs.rs/crate/cuicui_layout/0.9.0"><code>cuicui_layout</code></a> and
 not bevy’s native layouting algorithm (flexbox) for layouting :)</p>
-<p>The <a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/macro.dsl.html">docs.rs page</a> already has extensive documentation on the <a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro,
+<p>The <a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/macro.dsl.html">docs.rs page</a> already has extensive documentation on the <a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro,
 <strong>with a lot of examples</strong>.</p>
 <ul>
 <li><a href="https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html">https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html</a></li>
@@ -274,14 +281,14 @@ thus-constructed <code>DslBundle</code>.
 The spawned entity has the <code>Name</code> component set to the identifier provided for <code>EntityName</code>.</p>
 <p>Children are added to that entity if child statements are specified within
 braces.</p>
-<p>Still confused about it? I encourage you to either look at the <a href="https://github.com/nicopap/cuicui_layout/tree/cuicui_dsl-v0.10.1/examples">examples</a>
+<p>Still confused about it? I encourage you to either look at the <a href="https://github.com/nicopap/cuicui_layout/tree/cuicui_dsl-v0.10.2/examples">examples</a>
 or check the docs at:</p>
 <ul>
 <li><a href="https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html">https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html</a></li>
 </ul>
 <h3 id="dsl-specific-documentation"><a class="header" href="#dsl-specific-documentation">DSL-specific documentation</a></h3>
 <p>Since <code>dsl!</code> is just a wrapper around method calls, you can refer to the <code>docs.rs</code>
-page for the <a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a> implementation you chose to use in your <code>dsl!</code>.</p>
+page for the <a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a> implementation you chose to use in your <code>dsl!</code>.</p>
 <h3 id="tips-and-tricks"><a class="header" href="#tips-and-tricks">Tips and tricks</a></h3>
 <h4 id="behind-the-veil"><a class="header" href="#behind-the-veil">Behind the veil</a></h4>
 <p>The <code>dsl!</code> macro is basically a way to translate an imperative sequential API
@@ -302,7 +309,7 @@ into a declarative functional API.</p>
 }
 <span class="boring">}
 </span><span class="boring">}</span></code></pre></pre>
-<p>The <a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro translates it into:</p>
+<p>The <a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro translates it into:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">use cuicui_dsl::macros::__doc_helpers::*; // ignore this line pls
@@ -323,9 +330,9 @@ root.node(&amp;mut cmds, |cmds| {
 });
 <span class="boring">}
 </span><span class="boring">}</span></code></pre></pre>
-<p>The <a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/trait.DslBundle.html#tymethod.insert"><code>DslBundle::insert</code></a> impl of <code>BlinkDsl</code> takes care of converting itself
+<p>The <a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/trait.DslBundle.html#tymethod.insert"><code>DslBundle::insert</code></a> impl of <code>BlinkDsl</code> takes care of converting itself
 into a set of components it will insert on an entity.</p>
-<p>See the <a href="https://docs.rs/cuicui_dsl/0.10.1/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> documentation for more details and examples.</p>
+<p>See the <a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> documentation for more details and examples.</p>
 <h4 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h4>
 <p>The <code>cuicui</code> crates <em>compose</em> different <code>DslBundle</code>s with a very filthy trick.</p>
 <p>Using <code>DerefMut</code>, you can get both the methods of your custom <code>DslBundle</code> and
