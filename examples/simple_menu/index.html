@@ -197,10 +197,10 @@ use cuicui_layout_bevy_ui::UiDsl;</code></pre>
 with a different text. The buttons and menu all have a background, so we need
 a <code>Res&lt;AssetServer&gt;</code>.</p>
 <pre><code class="language-rust no_run noplayground">fn setup(mut cmds: Commands, serv: Res&lt;AssetServer&gt;) {</code></pre>
-<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
+<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
 on the viewport size. So let’s spawn the camera with it:</p>
 <pre><code class="language-rust no_run noplayground">    cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));</code></pre>
-<p>Now let’s spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.2/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
+<p>Now let’s spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
 <blockquote>
 <p><strong>Documentation</strong></p>
 <p>Methods available in the <code>dsl!</code> macro are the methods available in the choosen
@@ -208,7 +208,7 @@ DSL type (in this case, it would be the <code>UiDsl</code> methods). Check the d
 page for the corresponding type you are using as DSL. All methods that accept
 an <code>&amp;mut self</code> are candidate.</p>
 </blockquote>
-<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
+<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
 also available.</p>
 <p>We want:</p>
 <ul>
@@ -225,7 +225,7 @@ the <code>dsl!</code> macor, for clarity:</p>
     let board = serv.load(&quot;board.png&quot;);</code></pre>
 <p>Then we build the menu. We use the <code>dsl!</code> macro.</p>
 <ul>
-<li>As first parameter we specify the DSL we want to use, here we use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.2/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
+<li>As first parameter we specify the DSL we want to use, here we use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
 from <code>cuicui_layout_bevy_ui</code>, that we imported earlier.</li>
 <li>Then, we pass a <code>&amp;mut EntityCommands</code>, which we create by using <code>Commands::spawn_empty</code></li>
 <li>Finally, we start the definition of the UI scene.</li>
@@ -233,17 +233,17 @@ from <code>cuicui_layout_bevy_ui</code>, that we imported earlier.</li>
 <pre><code class="language-rust no_run noplayground">    dsl! {
         &lt;UiDsl&gt;
         &amp;mut cmds.spawn_empty(),</code></pre>
-<p>The first container should have a <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a> component, so that it always has
-the same size as the viewport with the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</p>
+<p>The first container should have a <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a> component, so that it always has
+the same size as the viewport with the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</p>
 <p>In the <code>LayoutDsl</code>,
-you add the screen root component by calling the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.screen_root"><code>LayoutDsl::screen_root</code></a> method.</p>
+you add the screen root component by calling the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.screen_root"><code>LayoutDsl::screen_root</code></a> method.</p>
 <pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {</code></pre>
-<p>We use <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.row"><code>row</code></a>, because the <em>root</em> node is not the column, it is the “screen”,
+<p>We use <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.row"><code>row</code></a>, because the <em>root</em> node is not the column, it is the “screen”,
 the container that will hold the column, and we want to position the column
 relative to the left side of the screen.</p>
-<p>Speaking of which, we use <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.distrib_start"><code>distrib_start</code></a>, so that the the first object is
+<p>Speaking of which, we use <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.distrib_start"><code>distrib_start</code></a>, so that the the first object is
 placed to the left of the container, the “start” of the distribution zone.</p>
-<p>The <code>image(&amp;bg)</code> is the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.2/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.image"><code>UiDsl::image</code></a> method, we pass to it the handle to the
+<p>The <code>image(&amp;bg)</code> is the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.image"><code>UiDsl::image</code></a> method, we pass to it the handle to the
 <code>&quot;background.jpg&quot;</code> image.</p>
 <p>If you have <a href="https://github.com/nicopap/cuicui_layout/blob/cuicui_layout_bevy_ui-v0.10.0/examples/simple_menu/main.rs">the example code</a> open in your IDE, you should be
 able to click on individual methods in the <code>dsl!</code> macro and jump to their source
@@ -274,9 +274,9 @@ Notes:
 <h3 id="rules"><a class="header" href="#rules">Rules</a></h3>
 <p>The best way to diagnose this kind of errors is to set <strong>rules</strong> on the size of
 the responsible nodes.</p>
-<p><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/struct.Rule.html"><code>Rule</code></a>s in <code>cuicui_layout</code> are size constraints on layout nodes. You can set
+<p><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Rule.html"><code>Rule</code></a>s in <code>cuicui_layout</code> are size constraints on layout nodes. You can set
 rules on width and height independently. In the <code>LayoutDsl</code> DSL, you set
-constraints through <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.width"><code>width</code></a>, <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.height"><code>height</code></a>, or both at the same time with <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.rules"><code>rules</code></a>.</p>
+constraints through <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.width"><code>width</code></a>, <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.height"><code>height</code></a>, or both at the same time with <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.rules"><code>rules</code></a>.</p>
 <p>The size of a container may be:</p>
 <ul>
 <li><strong>Fixed</strong> (using <code>px(pixels)</code>): it is set to a specific number of pixels.</li>
@@ -334,7 +334,7 @@ to distort the image.</p>
 to 100, its height will be 29.6 pixels.</p>
 <h3 id="margin"><a class="header" href="#margin">Margin</a></h3>
 <p>I find the column to be too much to the left, so let’s add margin between the edge of
-the container and the first item on the <strong>main axis</strong><sup class="footnote-reference"><a href="#2">2</a></sup> using <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html#method.main_margin"><code>main_margin</code></a>:</p>
+the container and the first item on the <strong>main axis</strong><sup class="footnote-reference"><a href="#2">2</a></sup> using <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.main_margin"><code>main_margin</code></a>:</p>
 <pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
     Column(column rules(px(100), pct(100)) main_margin(10.) image(&amp;board)) {
 // ...</code></pre>
@@ -351,7 +351,7 @@ with the start of the inside of the <code>Root</code>.</p>
 <p>Is this a victory? Only a small battle is won, the war is still ahead.
 We have to add our seven buttons.</p>
 <h3 id="code"><a class="header" href="#code">Code</a></h3>
-<p>For the buttons, we will need text. This is a <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.2/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> method, <a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.2/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.text"><code>UiDsl::text</code></a>.</p>
+<p>For the buttons, we will need text. This is a <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> method, <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.text"><code>UiDsl::text</code></a>.</p>
 <p>We also want to use <code>button.png</code> as background for our buttons. We loaded it
 using <code>let button_bg = serv.load(&quot;button.png&quot;)</code>.</p>
 <p>So let’s proceed:</p>

@@ -180,17 +180,13 @@ as a dependency first:</p>
 # previous dependencies
 # ...
 # New dependency:
-cuicui_chirp = &quot;0.10.2&quot;
+cuicui_chirp = &quot;0.11.0&quot;
 </code></pre>
 <p>The app setup requires adding <code>cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;()</code>,
 we also setup hot reloading by setting the asset plugin.</p>
 <pre><code class="language-rust no_run noplayground">    App::new()
         .add_plugins((
-            DefaultPlugins.set({
-                let delay = Duration::from_millis(200);
-                let watch_for_changes = bevy::asset::ChangeWatcher::with_delay(delay);
-                AssetPlugin { asset_folder, watch_for_changes }
-            }),
+            DefaultPlugins.set(AssetPlugin { file_path, ..default() }),
             cuicui_layout_bevy_ui::Plugin,
             // You still need to add manually the asset loader for UiDsl!
             cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;(),
@@ -297,12 +293,12 @@ We forgot to convert <code>pct</code> to <code>%</code> in some places. Let’s 
 <p><img src="../../chirp_menu_gallery/first_attempt.jpg" alt="The scene from simple menu, now loaded" /></p>
 <details><summary><b>Rules syntax by context</b></summary>
 <p>So how to write <code>cuicui_layout</code> rules? Here is a table:</p>
-<p>Note that <code>pct</code>, <code>child</code> and <code>px</code> are <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/index.html#functions"><strong>rust functions</strong></a>
+<p>Note that <code>pct</code>, <code>child</code> and <code>px</code> are <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/index.html#functions"><strong>rust functions</strong></a>
 and must be imported.</p>
-<div class="table-wrapper"><table><thead><tr><th><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/enum.Rule.html"><code>Rule</code></a></th><th>in <code>dsl!</code></th><th>in chirp</th></tr></thead><tbody>
-<tr><td><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/enum.Rule.html#variant.Children"><code>Children</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/fn.child.html"><code>child</code></a></td><td><code>2*</code></td></tr>
-<tr><td><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/enum.Rule.html#variant.Parent"><code>Parent</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/fn.pct.html"><code>pct</code></a></td><td><code>95%</code></td></tr>
-<tr><td><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/enum.Rule.html#variant.Fixed"><code>Fixed</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/fn.px.html"><code>px</code></a></td><td><code>120px</code></td></tr>
+<div class="table-wrapper"><table><thead><tr><th><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a></th><th>in <code>dsl!</code></th><th>in chirp</th></tr></thead><tbody>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html#variant.Children"><code>Children</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/fn.child.html"><code>child</code></a></td><td><code>2*</code></td></tr>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html#variant.Parent"><code>Parent</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/fn.pct.html"><code>pct</code></a></td><td><code>95%</code></td></tr>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html#variant.Fixed"><code>Fixed</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/fn.px.html"><code>px</code></a></td><td><code>120px</code></td></tr>
 </tbody></table>
 </div></details>
 <h3 id="templates"><a class="header" href="#templates">Templates</a></h3>
@@ -356,7 +352,7 @@ fn button(button_text) {
         button!(&quot;QUIT GAME&quot;)</code></pre>
 <h4 id="template-parameter-substitution-rules"><a class="header" href="#template-parameter-substitution-rules">Template parameter substitution rules</a></h4>
 <p>Currently, it is not possible to use template parameters everywhere.
-See <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/index.html#parameter-substitution">limitations</a>.</p>
+See <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/index.html#parameter-substitution">limitations</a>.</p>
 <h3 id="template-extras"><a class="header" href="#template-extras">Template extras</a></h3>
 <p>Now we want each button to have a different color. There are seven of them, like
 the seven dwarfes, <del>the seven fingers of the hand</del>, and seven colors of the rainbow!</p>

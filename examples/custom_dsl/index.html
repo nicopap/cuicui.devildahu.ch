@@ -174,10 +174,10 @@
                     <main>
                         <h1 id="scaling-up-with-a-custom-dsl"><a class="header" href="#scaling-up-with-a-custom-dsl">Scaling up with a custom DSL</a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
-<p><a href="https://docs.rs/cuicui_dsl/0.10.2/cuicui_dsl/"><code>cuicui_dsl</code></a> and <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/"><code>cuicui_chirp</code></a> are parametrized over the <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> and
-<a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> traits respectively.</p>
+<p><a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/"><code>cuicui_dsl</code></a> and <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/"><code>cuicui_chirp</code></a> are parametrized over the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> and
+<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> traits respectively.</p>
 <p>You can directly use one of the DSLs exported by an external crate such as
-<a href="https://docs.rs/cuicui_layout_bevy_ui/0.10.2/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>, <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>, <a href="https://docs.rs/bevy-ui-navigation/0.32.0/bevy_ui_navigation/index.html"><code>NavigationDsl</code></a> or <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.10.2/cuicui_layout_bevy_sprite/struct.SpriteDsl.html"><code>SpriteDsl</code></a>, but we recommend
+<a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>, <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>, <a href="https://docs.rs/bevy-ui-navigation/0.32.0/bevy_ui_navigation/index.html"><code>NavigationDsl</code></a> or <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.11.0/cuicui_layout_bevy_sprite/struct.SpriteDsl.html"><code>SpriteDsl</code></a>, but we recommend
 that you define your own DSL on top of them.</p>
 <p>This is how <a href="https://github.com/nicopap/cuicui_layout/tree/main/examples/chirpunk">the chirpunk example</a> works. We re-use pre-existing DSLs, but add
 our own layer on top, to create a unique vocabulary that applies to the specific
@@ -247,10 +247,10 @@ pub struct BetterFactorioDsl {
 }</code></pre>
 <p>Let’s add the chirp loader for <code>BetterFactorioDsl</code> in our <code>add_plugins</code>:</p>
 <pre><code class="language-rust no_run noplayground">            cuicui_chirp::loader::Plugin::new::&lt;BetterFactorioDsl&gt;(),</code></pre>
-<p>We need to implement <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> and <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> on <code>BetterFactorioDsl</code>
+<p>We need to implement <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> and <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> on <code>BetterFactorioDsl</code>
 for this to compile.
-The <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro is how we implement <code>ParseDsl</code>.
-We use the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>delegate</code></a> meta-attribute, so that we can re-use the <code>UiDsl</code> and
+The <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro is how we implement <code>ParseDsl</code>.
+We use the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>delegate</code></a> meta-attribute, so that we can re-use the <code>UiDsl</code> and
 <code>LayoutDsl</code> methods in our chirp file:</p>
 <pre><code class="language-rust no_run noplayground">#[parse_dsl_impl(delegate = inner)]
 impl BetterFactorioDsl {}
@@ -318,7 +318,7 @@ it’s being hovered</li>
 <h3 id="using-bevy_mod_picking"><a class="header" href="#using-bevy_mod_picking">Using <code>bevy_mod_picking</code></a></h3>
 <p>We will use the <a href="https://crates.io/crates/bevy_mod_picking"><code>bevy_mod_picking</code></a> components for this.</p>
 <p>We should use the <a href="https://docs.rs/bevy_mod_picking/0.15.0/bevy_mod_picking/prelude/struct.On.html"><code>On</code></a> component from <code>bevy_mod_picking</code>. One issue with <code>On</code>
-is that it is not <a href="https://docs.rs/bevy/0.11/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a>, therefore, we cannot use it in our chirp file;
+is that it is not <a href="https://docs.rs/bevy/0.12/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a>, therefore, we cannot use it in our chirp file;
 <code>cuicui_chirp</code> creates a scene then adds it to the bevy world, and this requires
 all components from the scene to be <code>Reflect</code>.</p>
 <blockquote>

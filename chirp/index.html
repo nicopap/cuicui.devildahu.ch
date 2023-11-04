@@ -180,9 +180,9 @@
 <p>It includes:</p>
 <ul>
 <li>A parser for the file format.</li>
-<li>A bevy loader to load those files in bevy, with <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>.</li>
-<li>A trait (<a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>) to use your own type’s methods as chirp methods</li>
-<li>A macro to automatically implement this trait (<a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>)</li>
+<li>A bevy loader to load those files in bevy, with <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>.</li>
+<li>A trait (<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>) to use your own type’s methods as chirp methods</li>
+<li>A macro to automatically implement this trait (<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>)</li>
 </ul>
 <p>The syntax is very close to that of <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a>’s <code>dsl!</code> macro,
 with <a href="#import-statements">some additions</a>.</p>
@@ -201,7 +201,7 @@ Consider using <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code
 <h3 id="cargo-features"><a class="header" href="#cargo-features">Cargo features</a></h3>
 <ul>
 <li><strong><code>fancy_errors</code></strong> (default): Print parsing error messages in a nicely formatted way.</li>
-<li><strong><code>macros</code></strong> (default): Define and export the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro</li>
+<li><strong><code>macros</code></strong> (default): Define and export the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro</li>
 <li><strong><code>load_font</code></strong> (default): load <code>Handle&lt;Font&gt;</code> as method argument</li>
 <li><strong><code>load_image</code></strong> (default): load <code>Handle&lt;Image&gt;</code> as method argument</li>
 <li><strong><code>more_unsafe</code></strong>: Convert some runtime checks into unsafe assumptions.
@@ -221,9 +221,9 @@ fn setup(mut cmds: Commands, assets: Res&lt;AssetServer&gt;) {
     cmds.spawn(ChirpBundle::from(assets.load(&quot;my_scene.chirp&quot;)));
 }
 <span class="boring">}</span></code></pre>
-<p>You need however to add the loader pluging (<a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>) for this to work.
+<p>You need however to add the loader pluging (<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>) for this to work.
 The plugin is parametrized over the DSL type.
-The DSL type needs to implement the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> trait.</p>
+The DSL type needs to implement the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> trait.</p>
 <p>Here is an example using <code>cuicui_layout_bevy_ui</code>’s DSL:</p>
 <pre><code class="language-rust no_run noplayground"><span class="boring">#[cfg(feature = &quot;doc_and_test&quot;)] mod test {
 </span><span class="boring">use cuicui_chirp::__doc_helpers::*; // ignore this line pls
@@ -249,13 +249,13 @@ page for the corresponding type you are using as DSL. All methods that accept
 an <code>&amp;mut self</code> are candidate.</p>
 </blockquote>
 <h3 id="dsl-specific-documentation"><a class="header" href="#dsl-specific-documentation">DSL-specific documentation</a></h3>
-<p>The identifiers within parenthesis are methods on the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>.</p>
-<p>Since the <code>chirp</code> format is a wrapper over a <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>, refer to the methods
+<p>The identifiers within parenthesis are methods on the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>.</p>
+<p>Since the <code>chirp</code> format is a wrapper over a <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>, refer to the methods
 on the <code>ParseDsl</code> impl you added as <code>loader::Plugin</code>.</p>
 <h3 id="making-a-dslbundle-compatible-with-cuicui_chirp"><a class="header" href="#making-a-dslbundle-compatible-with-cuicui_chirp">Making a <code>DslBundle</code> compatible with <code>cuicui_chirp</code></a></h3>
 <p>Let’s re-use the example in <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> and extend it to work with <code>cuicui_chirp</code>.</p>
-<p>We had a <code>MyDsl</code> that implements <code>DslBundle</code>, now we need to also implement <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>
-for it. So that methods are accessible in <code>ParseDsl</code>, use the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>
+<p>We had a <code>MyDsl</code> that implements <code>DslBundle</code>, now we need to also implement <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>
+for it. So that methods are accessible in <code>ParseDsl</code>, use the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>
 attribute macro, and add it to the <code>impl</code> block where all the DSL’s methods are
 defined:</p>
 <pre><code class="language-diff">     font_size: f32,
@@ -270,7 +270,7 @@ want to take advantage of hot reloading.</p>
 <h3 id="chirp-file-format"><a class="header" href="#chirp-file-format"><code>.chirp</code> file format</a></h3>
 <p>The basic syntax is similar to the <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> <code>dsl!</code> macro.</p>
 <p>One major difference is that <code>code</code> blocks are replaced with a function registry.
-You can register a function using the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/loader/struct.WorldHandles.html"><code>WorldHandles</code></a> resource. Registered
+You can register a function using the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/loader/struct.WorldHandles.html"><code>WorldHandles</code></a> resource. Registered
 functions are global to all chirp files loaded using <code>cuicui_chirp</code>.</p>
 <p>The other differences are the addition of import statements (<code>use</code>),
 template definitions (<code>fn</code>), and template calls (<code>template!()</code>).</p>
@@ -425,7 +425,7 @@ of the template body.</p>
 }
 <span class="boring">)}</span></code></pre>
 <h3 id="tips-and-tricks"><a class="header" href="#tips-and-tricks">Tips and tricks</a></h3>
-<p>See the <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/index.html">dedicated documentation page</a> for all available
+<p>See the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html">dedicated documentation page</a> for all available
 configuration options on <code>parse_dsl_impl</code>.</p>
 <h4 id="performance"><a class="header" href="#performance">Performance</a></h4>
 <p>Consider explicitly depending on the <code>log</code> and <code>tracing</code> crates, and enable the
@@ -459,15 +459,15 @@ to delegate methods not found on the <code>MyDsl</code> impl.</p>
 impl&lt;D: DslBundle&gt; MyDsl&lt;D&gt; {
     // ...
 }</code></pre>
-<p>See <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>parse_dsl_impl::delegate</code></a>.</p>
+<p>See <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>parse_dsl_impl::delegate</code></a>.</p>
 <h4 id="reflectdsl"><a class="header" href="#reflectdsl"><code>ReflectDsl</code></a></h4>
-<p>Unlike <code>cuicui_dsl</code>, it is possible to use <a href="https://docs.rs/bevy/0.11/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a> to define DSLs. See the
-<a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/reflect/struct.ReflectDsl.html"><code>ReflectDsl</code></a> docs for details.</p>
+<p>Unlike <code>cuicui_dsl</code>, it is possible to use <a href="https://docs.rs/bevy/0.12/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a> to define DSLs. See the
+<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/reflect/struct.ReflectDsl.html"><code>ReflectDsl</code></a> docs for details.</p>
 <h4 id="custom-parsers"><a class="header" href="#custom-parsers">Custom parsers</a></h4>
 <p>Since <code>.chirp</code> files are in text format, we need to convert text into method
 arguments. <code>parse_dsl_impl</code> parses differently method arguments depending on
 their type.</p>
-<p>See <a href="https://docs.rs/cuicui_chirp/0.10.2/cuicui_chirp/parse_dsl_impl/fn.type_parsers.html"><code>parse_dsl_impl::type_parsers</code></a> for details.</p>
+<p>See <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/fn.type_parsers.html"><code>parse_dsl_impl::type_parsers</code></a> for details.</p>
 <h2 id="what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp"><a class="header" href="#what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp">What is the relationship between <code>cuicui_dsl</code> and <code>cuicui_chirp</code>?</a></h2>
 <p><code>cuicui_dsl</code> is a macro (<code>dsl!</code>), while <code>cuicui_chirp</code> is a scene file format,
 parser and bevy loader. <code>cuicui_chirp</code> builds on top of <code>cuicui_dsl</code>, and has

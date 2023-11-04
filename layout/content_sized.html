@@ -183,16 +183,16 @@ already take care of elements that should depend on the size of their content.</
 <p>If you need to implement content-sized elements for your own UI stuff, you will
 need to:</p>
 <ol>
-<li>Define a <a href="https://docs.rs/bevy/0.11/bevy/ecs/system/trait.SystemParam.html"><code>SystemParam</code></a> (we will refer to it as <code>MyContentSize</code>)</li>
-<li>Implement <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/content_sized/trait.ComputeContentParam.html"><code>ComputeContentParam</code></a> for <code>MyContentSize</code>
+<li>Define a <a href="https://docs.rs/bevy/0.12/bevy/ecs/system/trait.SystemParam.html"><code>SystemParam</code></a> (we will refer to it as <code>MyContentSize</code>)</li>
+<li>Implement <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentParam.html"><code>ComputeContentParam</code></a> for <code>MyContentSize</code>
 <ul>
-<li>In <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/content_sized/trait.ComputeContentParam.html#associatedtype.Components"><code>ComputeContentParam::Components</code></a>, tell which components are used to
-tell content size. Use <a href="https://docs.rs/bevy/0.11/bevy/ecs/prelude/struct.AnyOf.html"><code>AnyOf</code></a> if several.</li>
-<li>In <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/content_sized/trait.ComputeContentParam.html#tymethod.condition"><code>ComputeContentParam::condition</code></a>, tell when the size update system should run</li>
+<li>In <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#associatedtype.Components"><code>ComputeContentParam::Components</code></a>, tell which components are used to
+tell content size. Use <a href="https://docs.rs/bevy/0.12/bevy/ecs/prelude/struct.AnyOf.html"><code>AnyOf</code></a> if several.</li>
+<li>In <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#tymethod.condition"><code>ComputeContentParam::condition</code></a>, tell when the size update system should run</li>
 </ul>
 </li>
-<li>Implement <code>ComputeContentSize</code> for <code>MyContentSize</code>. <a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/content_sized/trait.ComputeContentSize.html#tymethod.compute_content"><code>ComputeContentSize::compute_content</code></a>
-is ran for each leaf node <a href="https://docs.rs/bevy/0.11/bevy/ecs/prelude/struct.Entity.html"><code>Entity</code></a> with the provided components.
+<li>Implement <code>ComputeContentSize</code> for <code>MyContentSize</code>. <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentSize.html#tymethod.compute_content"><code>ComputeContentSize::compute_content</code></a>
+is ran for each leaf node <a href="https://docs.rs/bevy/0.12/bevy/ecs/prelude/struct.Entity.html"><code>Entity</code></a> with the provided components.
 <ul>
 <li>The sizes infered by the layouting algorithm is passed as the <code>set_size</code>
 parameter.</li>
@@ -202,7 +202,7 @@ of the return value.</li>
 </ul>
 </li>
 <li>Register <code>MyContentSize</code> as a content sized element computation using
-<a href="https://docs.rs/cuicui_layout/0.10.2/cuicui_layout/content_sized/trait.AppContentSizeExt.html#tymethod.add_content_sized"><code>app.add_content_sized::&lt;MyContentSize&gt;()</code></a>.</li>
+<a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.AppContentSizeExt.html#tymethod.add_content_sized"><code>app.add_content_sized::&lt;MyContentSize&gt;()</code></a>.</li>
 </ol>
 <p>And that’s it!</p>
 <p>The two distinct traits are required due to a limitation in the rust type system.
