@@ -185,7 +185,7 @@ more reference-level documentation on what the capabilities of each crate are.</
 to bevy’s. However, the release cadence is independent from bevy’s.</p>
 <h4 id="version-matrix"><a class="header" href="#version-matrix">Version matrix</a></h4>
 <div class="table-wrapper"><table><thead><tr><th>bevy</th><th>latest supporting version</th></tr></thead><tbody>
-<tr><td>0.12</td><td>0.11.0</td></tr>
+<tr><td>0.12</td><td>0.12.0</td></tr>
 <tr><td>0.11</td><td>0.10.2</td></tr>
 <tr><td>0.10</td><td>0.3.0</td></tr>
 </tbody></table>
@@ -230,10 +230,10 @@ very long names too!</p>
 Then use <a href="layout"><code>cuicui_layout</code></a> without any other crates.</p>
 <ul>
 <li>Interested in a ready-made UI library on top of <code>bevy_ui</code>?
-Then, use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/index.html"><code>cuicui_layout_bevy_ui</code></a>.</li>
+Then, use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/index.html"><code>cuicui_layout_bevy_ui</code></a>.</li>
 <li>Want more flexibility? Using <a href="layout"><code>cuicui_layout</code></a> on top of <code>bevy_sprite</code> will let you
 integrate your UI with a lot of 3rd party crates that only work with sprites.
-Then use <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.11.0/cuicui_layout_bevy_sprite/index.html"><code>cuicui_layout_bevy_sprite</code></a>.</li>
+Then use <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.12.0/cuicui_layout_bevy_sprite/index.html"><code>cuicui_layout_bevy_sprite</code></a>.</li>
 <li>Using <code>cuicui_layout</code> with your own custom rendering system? Again, bare <code>cuicui_layout</code>
 is what you want.</li>
 </ul>
@@ -251,7 +251,7 @@ sacrifice some compile time for this? Then use <a href="chirp"><code>cuicui_chir
 </ul>
 <p>The <a href="dsl/index.html#what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp"><code>cuicui_dsl</code> page</a> has a comparison matrix with <a href="chirp"><code>cuicui_chirp</code></a> to give
 you a more detailed idea.</p>
-<p>Note that the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/index.html"><code>cuicui_layout_bevy_ui</code></a> and <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.11.0/cuicui_layout_bevy_sprite/index.html"><code>cuicui_layout_bevy_sprite</code></a> crates
+<p>Note that the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/index.html"><code>cuicui_layout_bevy_ui</code></a> and <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.12.0/cuicui_layout_bevy_sprite/index.html"><code>cuicui_layout_bevy_sprite</code></a> crates
 have the <code>chirp</code> feature enabled by default. If you don’t care for it, then
 disable it with <code>default-features = false</code>.</p>
 <p>Furthermore, the integration crates depend on <code>cuicui_dsl</code> unconditionally, as
@@ -260,9 +260,9 @@ it is a very lightweight dependency.</p>
 <p>For illustration, we assume that we went with <code>cuicui_layout_bevy_ui</code>.</p>
 <h2 id="adding-the-selected-crates"><a class="header" href="#adding-the-selected-crates">Adding the selected crates</a></h2>
 <pre><code class="language-toml">[dependencies]
-cuicui_layout_bevy_ui = &quot;0.11.0&quot;
-cuicui_layout = &quot;0.11.0&quot;
-cuicui_dsl = &quot;0.11.0&quot;
+cuicui_layout_bevy_ui = &quot;0.12.0&quot;
+cuicui_layout = &quot;0.12.0&quot;
+cuicui_dsl = &quot;0.12.0&quot;
 </code></pre>
 <h2 id="using-the-cuicui-crates"><a class="header" href="#using-the-cuicui-crates">Using the cuicui crates</a></h2>
 <p>That’s it! You are now using <code>cuicui_layout</code>, congratulations!</p>
@@ -292,10 +292,10 @@ use cuicui_layout_bevy_ui::UiDsl;</code></pre>
 with a different text. The buttons and menu all have a background, so we need
 a <code>Res&lt;AssetServer&gt;</code>.</p>
 <pre><code class="language-rust no_run noplayground">fn setup(mut cmds: Commands, serv: Res&lt;AssetServer&gt;) {</code></pre>
-<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
+<p><code>cuicui_layout</code> uses the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component to resize layouts based
 on the viewport size. So let’s spawn the camera with it:</p>
 <pre><code class="language-rust no_run noplayground">    cmds.spawn((Camera2dBundle::default(), LayoutRootCamera));</code></pre>
-<p>Now let’s spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
+<p>Now let’s spawn the menu. The methods available on <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> are listed on <code>docs.rs</code>.</p>
 <blockquote>
 <p><strong>Documentation</strong></p>
 <p>Methods available in the <code>dsl!</code> macro are the methods available in the choosen
@@ -303,7 +303,7 @@ DSL type (in this case, it would be the <code>UiDsl</code> methods). Check the d
 page for the corresponding type you are using as DSL. All methods that accept
 an <code>&amp;mut self</code> are candidate.</p>
 </blockquote>
-<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
+<p>Since <code>UiDsl</code> by default <code>Deref&lt;Target=LayoutDsl&gt;</code>, the methods on <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a> are
 also available.</p>
 <p>We want:</p>
 <ul>
@@ -320,7 +320,7 @@ the <code>dsl!</code> macor, for clarity:</p>
     let board = serv.load(&quot;board.png&quot;);</code></pre>
 <p>Then we build the menu. We use the <code>dsl!</code> macro.</p>
 <ul>
-<li>As first parameter we specify the DSL we want to use, here we use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
+<li>As first parameter we specify the DSL we want to use, here we use <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>
 from <code>cuicui_layout_bevy_ui</code>, that we imported earlier.</li>
 <li>Then, we pass a <code>&amp;mut EntityCommands</code>, which we create by using <code>Commands::spawn_empty</code></li>
 <li>Finally, we start the definition of the UI scene.</li>
@@ -328,19 +328,19 @@ from <code>cuicui_layout_bevy_ui</code>, that we imported earlier.</li>
 <pre><code class="language-rust no_run noplayground">    dsl! {
         &lt;UiDsl&gt;
         &amp;mut cmds.spawn_empty(),</code></pre>
-<p>The first container should have a <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a> component, so that it always has
-the same size as the viewport with the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</p>
+<p>The first container should have a <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a> component, so that it always has
+the same size as the viewport with the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</p>
 <p>In the <code>LayoutDsl</code>,
-you add the screen root component by calling the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.screen_root"><code>LayoutDsl::screen_root</code></a> method.</p>
+you add the screen root component by calling the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.screen_root"><code>LayoutDsl::screen_root</code></a> method.</p>
 <pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start image(&amp;bg)) {</code></pre>
-<p>We use <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.row"><code>row</code></a>, because the <em>root</em> node is not the column, it is the “screen”,
+<p>We use <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.row"><code>row</code></a>, because the <em>root</em> node is not the column, it is the “screen”,
 the container that will hold the column, and we want to position the column
 relative to the left side of the screen.</p>
-<p>Speaking of which, we use <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.distrib_start"><code>distrib_start</code></a>, so that the the first object is
+<p>Speaking of which, we use <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.distrib_start"><code>distrib_start</code></a>, so that the the first object is
 placed to the left of the container, the “start” of the distribution zone.</p>
-<p>The <code>image(&amp;bg)</code> is the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.image"><code>UiDsl::image</code></a> method, we pass to it the handle to the
+<p>The <code>image(&amp;bg)</code> is the <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.image"><code>UiDsl::image</code></a> method, we pass to it the handle to the
 <code>&quot;background.jpg&quot;</code> image.</p>
-<p>If you have <a href="https://github.com/nicopap/cuicui_layout/blob/cuicui_layout_bevy_ui-v0.10.0/examples/simple_menu/main.rs">the example code</a> open in your IDE, you should be
+<p>If you have <a href="https://github.com/nicopap/cuicui_layout/blob/cuicui_layout_bevy_ui-v0.12.0/examples/simple_menu/main.rs">the example code</a> open in your IDE, you should be
 able to click on individual methods in the <code>dsl!</code> macro and jump to their source
 or see their documentation.</p>
 <p>We name the node <code>Root</code>, so that it’s easier to identify it using <code>bevy-inspector-egui</code>.
@@ -369,9 +369,9 @@ Notes:
 <h3 id="rules"><a class="header" href="#rules">Rules</a></h3>
 <p>The best way to diagnose this kind of errors is to set <strong>rules</strong> on the size of
 the responsible nodes.</p>
-<p><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Rule.html"><code>Rule</code></a>s in <code>cuicui_layout</code> are size constraints on layout nodes. You can set
+<p><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.Rule.html"><code>Rule</code></a>s in <code>cuicui_layout</code> are size constraints on layout nodes. You can set
 rules on width and height independently. In the <code>LayoutDsl</code> DSL, you set
-constraints through <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.width"><code>width</code></a>, <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.height"><code>height</code></a>, or both at the same time with <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.rules"><code>rules</code></a>.</p>
+constraints through <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.width"><code>width</code></a>, <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.height"><code>height</code></a>, or both at the same time with <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.rules"><code>rules</code></a>.</p>
 <p>The size of a container may be:</p>
 <ul>
 <li><strong>Fixed</strong> (using <code>px(pixels)</code>): it is set to a specific number of pixels.</li>
@@ -429,7 +429,7 @@ to distort the image.</p>
 to 100, its height will be 29.6 pixels.</p>
 <h3 id="margin"><a class="header" href="#margin">Margin</a></h3>
 <p>I find the column to be too much to the left, so let’s add margin between the edge of
-the container and the first item on the <strong>main axis</strong><sup class="footnote-reference"><a href="#2">2</a></sup> using <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.main_margin"><code>main_margin</code></a>:</p>
+the container and the first item on the <strong>main axis</strong><sup class="footnote-reference"><a href="#2">2</a></sup> using <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html#method.main_margin"><code>main_margin</code></a>:</p>
 <pre><code class="language-rust no_run noplayground">Root(screen_root row distrib_start main_margin(50.) image(&amp;bg)) {
     Column(column rules(px(100), pct(100)) main_margin(10.) image(&amp;board)) {
 // ...</code></pre>
@@ -446,7 +446,7 @@ with the start of the inside of the <code>Root</code>.</p>
 <p>Is this a victory? Only a small battle is won, the war is still ahead.
 We have to add our seven buttons.</p>
 <h3 id="code"><a class="header" href="#code">Code</a></h3>
-<p>For the buttons, we will need text. This is a <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> method, <a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.text"><code>UiDsl::text</code></a>.</p>
+<p>For the buttons, we will need text. This is a <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a> method, <a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html#method.text"><code>UiDsl::text</code></a>.</p>
 <p>We also want to use <code>button.png</code> as background for our buttons. We loaded it
 using <code>let button_bg = serv.load(&quot;button.png&quot;)</code>.</p>
 <p>So let’s proceed:</p>
@@ -610,7 +610,7 @@ as a dependency first:</p>
 # previous dependencies
 # ...
 # New dependency:
-cuicui_chirp = &quot;0.11.0&quot;
+cuicui_chirp = &quot;0.12.0&quot;
 </code></pre>
 <p>The app setup requires adding <code>cuicui_chirp::loader::Plugin::new::&lt;UiDsl&gt;()</code>,
 we also setup hot reloading by setting the asset plugin.</p>
@@ -723,12 +723,12 @@ We forgot to convert <code>pct</code> to <code>%</code> in some places. Let’s 
 <p><img src="../examples/chirp_menu/../../chirp_menu_gallery/first_attempt.jpg" alt="The scene from simple menu, now loaded" /></p>
 <details><summary><b>Rules syntax by context</b></summary>
 <p>So how to write <code>cuicui_layout</code> rules? Here is a table:</p>
-<p>Note that <code>pct</code>, <code>child</code> and <code>px</code> are <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/index.html#functions"><strong>rust functions</strong></a>
+<p>Note that <code>pct</code>, <code>child</code> and <code>px</code> are <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/index.html#functions"><strong>rust functions</strong></a>
 and must be imported.</p>
-<div class="table-wrapper"><table><thead><tr><th><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a></th><th>in <code>dsl!</code></th><th>in chirp</th></tr></thead><tbody>
-<tr><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html#variant.Children"><code>Children</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/fn.child.html"><code>child</code></a></td><td><code>2*</code></td></tr>
-<tr><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html#variant.Parent"><code>Parent</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/fn.pct.html"><code>pct</code></a></td><td><code>95%</code></td></tr>
-<tr><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html#variant.Fixed"><code>Fixed</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/fn.px.html"><code>px</code></a></td><td><code>120px</code></td></tr>
+<div class="table-wrapper"><table><thead><tr><th><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a></th><th>in <code>dsl!</code></th><th>in chirp</th></tr></thead><tbody>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html#variant.Children"><code>Children</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/fn.child.html"><code>child</code></a></td><td><code>2*</code></td></tr>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html#variant.Parent"><code>Parent</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/fn.pct.html"><code>pct</code></a></td><td><code>95%</code></td></tr>
+<tr><td><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html#variant.Fixed"><code>Fixed</code></a></td><td><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/fn.px.html"><code>px</code></a></td><td><code>120px</code></td></tr>
 </tbody></table>
 </div></details>
 <h3 id="templates"><a class="header" href="#templates">Templates</a></h3>
@@ -782,7 +782,7 @@ fn button(button_text) {
         button!(&quot;QUIT GAME&quot;)</code></pre>
 <h4 id="template-parameter-substitution-rules"><a class="header" href="#template-parameter-substitution-rules">Template parameter substitution rules</a></h4>
 <p>Currently, it is not possible to use template parameters everywhere.
-See <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/index.html#parameter-substitution">limitations</a>.</p>
+See <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/index.html#parameter-substitution">limitations</a>.</p>
 <h3 id="template-extras"><a class="header" href="#template-extras">Template extras</a></h3>
 <p>Now we want each button to have a different color. There are seven of them, like
 the seven dwarfes, <del>the seven fingers of the hand</del>, and seven colors of the rainbow!</p>
@@ -807,10 +807,10 @@ Entity(named(&quot;CREDITS&quot;) image(&quot;button.png&quot;) width(80%) text(
 add a bit of interactivity.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scaling-up-with-a-custom-dsl"><a class="header" href="#scaling-up-with-a-custom-dsl">Scaling up with a custom DSL</a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a></p>
-<p><a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/"><code>cuicui_dsl</code></a> and <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/"><code>cuicui_chirp</code></a> are parametrized over the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> and
-<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> traits respectively.</p>
+<p><a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/"><code>cuicui_dsl</code></a> and <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/"><code>cuicui_chirp</code></a> are parametrized over the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> and
+<a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> traits respectively.</p>
 <p>You can directly use one of the DSLs exported by an external crate such as
-<a href="https://docs.rs/cuicui_layout_bevy_ui/0.11.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>, <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>, <a href="https://docs.rs/bevy-ui-navigation/0.32.0/bevy_ui_navigation/index.html"><code>NavigationDsl</code></a> or <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.11.0/cuicui_layout_bevy_sprite/struct.SpriteDsl.html"><code>SpriteDsl</code></a>, but we recommend
+<a href="https://docs.rs/cuicui_layout_bevy_ui/0.12.0/cuicui_layout_bevy_ui/dsl/struct.UiDsl.html"><code>UiDsl</code></a>, <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a>, <a href="https://docs.rs/bevy-ui-navigation/0.33.0/bevy_ui_navigation/index.html"><code>NavigationDsl</code></a> or <a href="https://docs.rs/cuicui_layout_bevy_sprite/0.12.0/cuicui_layout_bevy_sprite/struct.SpriteDsl.html"><code>SpriteDsl</code></a>, but we recommend
 that you define your own DSL on top of them.</p>
 <p>This is how <a href="https://github.com/nicopap/cuicui_layout/tree/main/examples/chirpunk">the chirpunk example</a> works. We re-use pre-existing DSLs, but add
 our own layer on top, to create a unique vocabulary that applies to the specific
@@ -880,10 +880,10 @@ pub struct BetterFactorioDsl {
 }</code></pre>
 <p>Let’s add the chirp loader for <code>BetterFactorioDsl</code> in our <code>add_plugins</code>:</p>
 <pre><code class="language-rust no_run noplayground">            cuicui_chirp::loader::Plugin::new::&lt;BetterFactorioDsl&gt;(),</code></pre>
-<p>We need to implement <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> and <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> on <code>BetterFactorioDsl</code>
+<p>We need to implement <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> and <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> on <code>BetterFactorioDsl</code>
 for this to compile.
-The <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro is how we implement <code>ParseDsl</code>.
-We use the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>delegate</code></a> meta-attribute, so that we can re-use the <code>UiDsl</code> and
+The <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro is how we implement <code>ParseDsl</code>.
+We use the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>delegate</code></a> meta-attribute, so that we can re-use the <code>UiDsl</code> and
 <code>LayoutDsl</code> methods in our chirp file:</p>
 <pre><code class="language-rust no_run noplayground">#[parse_dsl_impl(delegate = inner)]
 impl BetterFactorioDsl {}
@@ -911,11 +911,10 @@ define a <code>hidden</code> method to set it:</p>
         self.is_hidden = true;
     }</code></pre>
 <p>Now we can read the <code>is_hidden</code> field in the <strong><code>DslBundle::insert</code></strong> implementation:</p>
-<pre><code class="language-rust no_run noplayground">        let id = self.inner.insert(cmds);
+<pre><code class="language-rust no_run noplayground">        self.inner.insert(cmds);
         if self.is_hidden {
             cmds.insert(Visibility::Hidden);
-        }
-        id</code></pre>
+        }</code></pre>
 <p>Make sure to add it <em>after</em> the <code>inner.insert(cmds)</code>. <code>Visibility</code> is part of the
 <code>NodeBundle</code> that <code>UiDsl</code> adds to the entity. Adding it <em>after</em> the <code>inner</code> ensures
 that we overwrite the <code>Visibility</code> component with the wanted value.</p>
@@ -950,7 +949,7 @@ it’s being hovered</li>
 <p>Let’s add them to our <code>BetterFactorioDsl</code>.</p>
 <h3 id="using-bevy_mod_picking"><a class="header" href="#using-bevy_mod_picking">Using <code>bevy_mod_picking</code></a></h3>
 <p>We will use the <a href="https://crates.io/crates/bevy_mod_picking"><code>bevy_mod_picking</code></a> components for this.</p>
-<p>We should use the <a href="https://docs.rs/bevy_mod_picking/0.15.0/bevy_mod_picking/prelude/struct.On.html"><code>On</code></a> component from <code>bevy_mod_picking</code>. One issue with <code>On</code>
+<p>We should use the <a href="https://docs.rs/bevy_mod_picking/0.17.0/bevy_mod_picking/prelude/struct.On.html"><code>On</code></a> component from <code>bevy_mod_picking</code>. One issue with <code>On</code>
 is that it is not <a href="https://docs.rs/bevy/0.12/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a>, therefore, we cannot use it in our chirp file;
 <code>cuicui_chirp</code> creates a scene then adds it to the bevy world, and this requires
 all components from the scene to be <code>Reflect</code>.</p>
@@ -965,7 +964,8 @@ components are <code>Reflect</code> proxies that are synchronized with actual co
 </blockquote>
 <p>All we have left to do is to define a mirror component,
 implement <code>From&lt;&amp;ReflectOnClick&gt;</code> for <code>On&lt;Pointer&lt;Click&gt;&gt;</code>, and add <code>MirrorPlugin</code>.</p>
-<pre><code class="language-rust no_run noplayground">use bevy::prelude::{info, Component, EventWriter, Reflect, ReflectComponent};
+<pre><code class="language-rust no_run noplayground">use bevy::log::info;
+use bevy::prelude::{Component, EventWriter, Reflect, ReflectComponent};
 use bevy_mod_picking::prelude::{Click, On, Pointer};
 
 use crate::dsl::{SwitchGraph, SwitchTab};
@@ -986,13 +986,13 @@ impl&lt;'a&gt; From&lt;&amp;'a ReflectOnClick&gt; for OnClick {
         match value {
             ReflectOnClick::LogInfo(text) =&gt; {
                 let text = text.clone();
-                OnClick::run(move || info!(&quot;{text}&quot;))
+                Self::run(move || info!(&quot;{text}&quot;))
             }
             &amp;ReflectOnClick::EmitSwitchTab(index) =&gt; {
-                OnClick::run(move |mut ev: EventWriter&lt;_&gt;| ev.send(SwitchTab(index)))
+                Self::run(move |mut ev: EventWriter&lt;_&gt;| ev.send(SwitchTab(index)))
             }
             &amp;ReflectOnClick::EmitSwitchGraph(index) =&gt; {
-                OnClick::run(move |mut ev: EventWriter&lt;_&gt;| ev.send(SwitchGraph(index)))
+                Self::run(move |mut ev: EventWriter&lt;_&gt;| ev.send(SwitchGraph(index)))
             }
             ReflectOnClick::Invalid =&gt; unreachable!(&quot;Should never spawn an invalid ReflectOnClick&quot;),
         }
@@ -1092,7 +1092,7 @@ its children, set <code>Visibility</code> of all the children but the <code>u8</
 </ol>
 <pre><code class="language-rust no_run noplayground">    use Visibility::{Hidden, Inherited};
 
-    for req in tab_requests.iter() {
+    for req in tab_requests.read() {
         let Ok(menu_children) = tab_menu.get_single() else {
             continue;
         };
@@ -1316,8 +1316,8 @@ or modified through <code>bevy-inspector-egui</code>.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cuicui_dsl"><a class="header" href="#cuicui_dsl"><code>cuicui_dsl</code></a></h1>
 <p><a href="https://cuicui.nicopap.ch/introduction.html"><img src="https://img.shields.io/badge/The_Cuicui_Book-blue" alt="The Book" /></a>
 <a href="https://docs.rs/cuicui_dsl/"><img src="https://docs.rs/cuicui_dsl/badge.svg" alt="Documentation" /></a></p>
-<p><code>cuicui_dsl</code> is a crate exposing a single trait (<a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a>) and
-a single macro (<a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a>) to define bevy scenes within rust code.</p>
+<p><code>cuicui_dsl</code> is a crate exposing a single trait (<a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a>) and
+a single macro (<a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a>) to define bevy scenes within rust code.</p>
 <p>It is used in <code>cuicui</code> for UI, but can be used for any kind of scene.</p>
 <h2 id="when-to-use-cuicui_dsl"><a class="header" href="#when-to-use-cuicui_dsl">When to use <code>cuicui_dsl</code>?</a></h2>
 <ul>
@@ -1361,12 +1361,11 @@ impl MyDsl {
     }
 }
 impl DslBundle for MyDsl {
-    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) -&gt; Entity {
+    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) {
         cmds.insert(self.style.clone());
         cmds.insert(BackgroundColor(self.bg_color));
         self.inner.insert(cmds);
         // ...
-        cmds.id()
     }
 }
 // Now you can use `MyDsl` in a `dsl!` macro
@@ -1393,7 +1392,7 @@ an <code>&amp;mut self</code> are candidate.</p>
 </blockquote>
 <p>This seems a bit verbose, that’s because you should be using <a href="https://docs.rs/crate/cuicui_layout/0.9.0"><code>cuicui_layout</code></a> and
 not bevy’s native layouting algorithm (flexbox) for layouting :)</p>
-<p>The <a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/macro.dsl.html">docs.rs page</a> already has extensive documentation on the <a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro,
+<p>The <a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/macro.dsl.html">docs.rs page</a> already has extensive documentation on the <a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro,
 <strong>with a lot of examples</strong>.</p>
 <ul>
 <li><a href="https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html">https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html</a></li>
@@ -1422,14 +1421,14 @@ thus-constructed <code>DslBundle</code>.
 The spawned entity has the <code>Name</code> component set to the identifier provided for <code>EntityName</code>.</p>
 <p>Children are added to that entity if child statements are specified within
 braces.</p>
-<p>Still confused about it? I encourage you to either look at the <a href="https://github.com/nicopap/cuicui_layout/tree/cuicui_dsl-v0.11.0/examples">examples</a>
+<p>Still confused about it? I encourage you to either look at the <a href="https://github.com/nicopap/cuicui_layout/tree/cuicui_dsl-v0.12.0/examples">examples</a>
 or check the docs at:</p>
 <ul>
 <li><a href="https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html">https://docs.rs/cuicui_dsl/latest/cuicui_dsl/macro.dsl.html</a></li>
 </ul>
 <h3 id="dsl-specific-documentation"><a class="header" href="#dsl-specific-documentation">DSL-specific documentation</a></h3>
 <p>Since <code>dsl!</code> is just a wrapper around method calls, you can refer to the <code>docs.rs</code>
-page for the <a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a> implementation you chose to use in your <code>dsl!</code>.</p>
+page for the <a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/trait.DslBundle.html"><code>DslBundle</code></a> implementation you chose to use in your <code>dsl!</code>.</p>
 <h3 id="tips-and-tricks"><a class="header" href="#tips-and-tricks">Tips and tricks</a></h3>
 <h4 id="behind-the-veil"><a class="header" href="#behind-the-veil">Behind the veil</a></h4>
 <p>The <code>dsl!</code> macro is basically a way to translate an imperative sequential API
@@ -1450,7 +1449,7 @@ into a declarative functional API.</p>
 }
 <span class="boring">}
 </span><span class="boring">}</span></code></pre></pre>
-<p>The <a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro translates it into:</p>
+<p>The <a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> macro translates it into:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">use cuicui_dsl::macros::__doc_helpers::*; // ignore this line pls
@@ -1471,9 +1470,9 @@ root.node(&amp;mut cmds, |cmds| {
 });
 <span class="boring">}
 </span><span class="boring">}</span></code></pre></pre>
-<p>The <a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/trait.DslBundle.html#tymethod.insert"><code>DslBundle::insert</code></a> impl of <code>BlinkDsl</code> takes care of converting itself
+<p>The <a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/trait.DslBundle.html#tymethod.insert"><code>DslBundle::insert</code></a> impl of <code>BlinkDsl</code> takes care of converting itself
 into a set of components it will insert on an entity.</p>
-<p>See the <a href="https://docs.rs/cuicui_dsl/0.11.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> documentation for more details and examples.</p>
+<p>See the <a href="https://docs.rs/cuicui_dsl/0.12.0/cuicui_dsl/macro.dsl.html"><code>dsl!</code></a> documentation for more details and examples.</p>
 <h4 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h4>
 <p>The <code>cuicui</code> crates <em>compose</em> different <code>DslBundle</code>s with a very filthy trick.</p>
 <p>Using <code>DerefMut</code>, you can get both the methods of your custom <code>DslBundle</code> and
@@ -1495,12 +1494,12 @@ pub struct MyDsl&lt;D = ()&gt; {
     font_size: f32,
 }
 impl&lt;D: DslBundle&gt; DslBundle for MyDsl&lt;D&gt; {
-    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) -&gt; Entity {
+    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) {
         cmds.insert(self.style.clone());
         // ... other components to insert ...
         // Always call the inner type at the end so that insertion order follows
         // the type declaration order.
-        self.inner.insert(cmds)
+        self.inner.insert(cmds);
     }
 }
 // Both the methods defined on `MyDsl`
@@ -1539,11 +1538,10 @@ impl MyDynamicDsl {
     // ... Hopefully you get the idea ...
 }
 impl DslBundle for MyDynamicDsl {
-    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) -&gt; Entity {
+    fn insert(&amp;mut self, cmds: &amp;mut EntityCommands) {
         for spawn in self.0.drain(..) {
             spawn(cmds);
         }
-        cmds.id()
     }
 }
 <span class="boring">}</span></code></pre></pre>
@@ -1598,9 +1596,9 @@ that instead.</p>
 <p>It includes:</p>
 <ul>
 <li>A parser for the file format.</li>
-<li>A bevy loader to load those files in bevy, with <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>.</li>
-<li>A trait (<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>) to use your own type’s methods as chirp methods</li>
-<li>A macro to automatically implement this trait (<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>)</li>
+<li>A bevy loader to load those files in bevy, with <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>.</li>
+<li>A trait (<a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>) to use your own type’s methods as chirp methods</li>
+<li>A macro to automatically implement this trait (<a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>)</li>
 </ul>
 <p>The syntax is very close to that of <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a>’s <code>dsl!</code> macro,
 with <a href="../chirp/index.html#import-statements">some additions</a>.</p>
@@ -1619,7 +1617,7 @@ Consider using <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code
 <h3 id="cargo-features"><a class="header" href="#cargo-features">Cargo features</a></h3>
 <ul>
 <li><strong><code>fancy_errors</code></strong> (default): Print parsing error messages in a nicely formatted way.</li>
-<li><strong><code>macros</code></strong> (default): Define and export the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro</li>
+<li><strong><code>macros</code></strong> (default): Define and export the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a> macro</li>
 <li><strong><code>load_font</code></strong> (default): load <code>Handle&lt;Font&gt;</code> as method argument</li>
 <li><strong><code>load_image</code></strong> (default): load <code>Handle&lt;Image&gt;</code> as method argument</li>
 <li><strong><code>more_unsafe</code></strong>: Convert some runtime checks into unsafe assumptions.
@@ -1639,9 +1637,9 @@ fn setup(mut cmds: Commands, assets: Res&lt;AssetServer&gt;) {
     cmds.spawn(ChirpBundle::from(assets.load(&quot;my_scene.chirp&quot;)));
 }
 <span class="boring">}</span></code></pre>
-<p>You need however to add the loader pluging (<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>) for this to work.
+<p>You need however to add the loader pluging (<a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/loader/struct.Plugin.html"><code>loader::Plugin</code></a>) for this to work.
 The plugin is parametrized over the DSL type.
-The DSL type needs to implement the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> trait.</p>
+The DSL type needs to implement the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a> trait.</p>
 <p>Here is an example using <code>cuicui_layout_bevy_ui</code>’s DSL:</p>
 <pre><code class="language-rust no_run noplayground"><span class="boring">#[cfg(feature = &quot;doc_and_test&quot;)] mod test {
 </span><span class="boring">use cuicui_chirp::__doc_helpers::*; // ignore this line pls
@@ -1667,13 +1665,13 @@ page for the corresponding type you are using as DSL. All methods that accept
 an <code>&amp;mut self</code> are candidate.</p>
 </blockquote>
 <h3 id="dsl-specific-documentation-1"><a class="header" href="#dsl-specific-documentation-1">DSL-specific documentation</a></h3>
-<p>The identifiers within parenthesis are methods on the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>.</p>
-<p>Since the <code>chirp</code> format is a wrapper over a <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>, refer to the methods
+<p>The identifiers within parenthesis are methods on the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>.</p>
+<p>Since the <code>chirp</code> format is a wrapper over a <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>, refer to the methods
 on the <code>ParseDsl</code> impl you added as <code>loader::Plugin</code>.</p>
 <h3 id="making-a-dslbundle-compatible-with-cuicui_chirp"><a class="header" href="#making-a-dslbundle-compatible-with-cuicui_chirp">Making a <code>DslBundle</code> compatible with <code>cuicui_chirp</code></a></h3>
 <p>Let’s re-use the example in <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> and extend it to work with <code>cuicui_chirp</code>.</p>
-<p>We had a <code>MyDsl</code> that implements <code>DslBundle</code>, now we need to also implement <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>
-for it. So that methods are accessible in <code>ParseDsl</code>, use the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>
+<p>We had a <code>MyDsl</code> that implements <code>DslBundle</code>, now we need to also implement <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl/trait.ParseDsl.html"><code>ParseDsl</code></a>
+for it. So that methods are accessible in <code>ParseDsl</code>, use the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/index.html"><code>parse_dsl_impl</code></a>
 attribute macro, and add it to the <code>impl</code> block where all the DSL’s methods are
 defined:</p>
 <pre><code class="language-diff">     font_size: f32,
@@ -1688,7 +1686,7 @@ want to take advantage of hot reloading.</p>
 <h3 id="chirp-file-format"><a class="header" href="#chirp-file-format"><code>.chirp</code> file format</a></h3>
 <p>The basic syntax is similar to the <a href="https://lib.rs/crates/cuicui_dsl"><code>cuicui_dsl</code></a> <code>dsl!</code> macro.</p>
 <p>One major difference is that <code>code</code> blocks are replaced with a function registry.
-You can register a function using the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/loader/struct.WorldHandles.html"><code>WorldHandles</code></a> resource. Registered
+You can register a function using the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/loader/struct.WorldHandles.html"><code>WorldHandles</code></a> resource. Registered
 functions are global to all chirp files loaded using <code>cuicui_chirp</code>.</p>
 <p>The other differences are the addition of import statements (<code>use</code>),
 template definitions (<code>fn</code>), and template calls (<code>template!()</code>).</p>
@@ -1843,7 +1841,7 @@ of the template body.</p>
 }
 <span class="boring">)}</span></code></pre>
 <h3 id="tips-and-tricks-1"><a class="header" href="#tips-and-tricks-1">Tips and tricks</a></h3>
-<p>See the <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/index.html">dedicated documentation page</a> for all available
+<p>See the <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/index.html">dedicated documentation page</a> for all available
 configuration options on <code>parse_dsl_impl</code>.</p>
 <h4 id="performance-1"><a class="header" href="#performance-1">Performance</a></h4>
 <p>Consider explicitly depending on the <code>log</code> and <code>tracing</code> crates, and enable the
@@ -1877,15 +1875,15 @@ to delegate methods not found on the <code>MyDsl</code> impl.</p>
 impl&lt;D: DslBundle&gt; MyDsl&lt;D&gt; {
     // ...
 }</code></pre>
-<p>See <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>parse_dsl_impl::delegate</code></a>.</p>
+<p>See <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/fn.delegate.html"><code>parse_dsl_impl::delegate</code></a>.</p>
 <h4 id="reflectdsl"><a class="header" href="#reflectdsl"><code>ReflectDsl</code></a></h4>
 <p>Unlike <code>cuicui_dsl</code>, it is possible to use <a href="https://docs.rs/bevy/0.12/bevy/reflect/trait.Reflect.html"><code>Reflect</code></a> to define DSLs. See the
-<a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/reflect/struct.ReflectDsl.html"><code>ReflectDsl</code></a> docs for details.</p>
+<a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/reflect/struct.ReflectDsl.html"><code>ReflectDsl</code></a> docs for details.</p>
 <h4 id="custom-parsers"><a class="header" href="#custom-parsers">Custom parsers</a></h4>
 <p>Since <code>.chirp</code> files are in text format, we need to convert text into method
 arguments. <code>parse_dsl_impl</code> parses differently method arguments depending on
 their type.</p>
-<p>See <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse_dsl_impl/fn.type_parsers.html"><code>parse_dsl_impl::type_parsers</code></a> for details.</p>
+<p>See <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse_dsl_impl/fn.type_parsers.html"><code>parse_dsl_impl::type_parsers</code></a> for details.</p>
 <h2 id="what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp-1"><a class="header" href="#what-is-the-relationship-between-cuicui_dsl-and-cuicui_chirp-1">What is the relationship between <code>cuicui_dsl</code> and <code>cuicui_chirp</code>?</a></h2>
 <p><code>cuicui_dsl</code> is a macro (<code>dsl!</code>), while <code>cuicui_chirp</code> is a scene file format,
 parser and bevy loader. <code>cuicui_chirp</code> builds on top of <code>cuicui_dsl</code>, and has
@@ -1945,28 +1943,28 @@ why things do not turn out as expected.</li>
 <ul>
 <li><strong><code>debug</code></strong>: Enable the debug overlay</li>
 <li><strong><code>reflect</code></strong> (default): Enable <code>bevy_reflect</code> impls for layout components.</li>
-<li><strong><code>chirp</code></strong> (default): Enable <a href="https://lib.rs/crates/cuicui_chirp">chirp</a> <a href="https://docs.rs/cuicui_chirp/0.11.0/cuicui_chirp/parse/trait.ParseDsl.html"><code>ParseDsl</code></a> implementation for <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a></li>
-<li><strong><code>dsl</code></strong> (default): Define and export <code>LayoutDsl</code> <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> impl for the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/macro.dsl.html"><code>dsl!</code></a> macro</li>
+<li><strong><code>chirp</code></strong> (default): Enable <a href="https://lib.rs/crates/cuicui_chirp">chirp</a> <a href="https://docs.rs/cuicui_chirp/0.12.0/cuicui_chirp/parse/trait.ParseDsl.html"><code>ParseDsl</code></a> implementation for <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/dsl/struct.LayoutDsl.html"><code>LayoutDsl</code></a></li>
+<li><strong><code>dsl</code></strong> (default): Define and export <code>LayoutDsl</code> <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/trait.DslBundle.html"><code>DslBundle</code></a> impl for the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/macro.dsl.html"><code>dsl!</code></a> macro</li>
 </ul>
 <h3 id="layouting-1"><a class="header" href="#layouting-1">Layouting</a></h3>
 <p><code>cuicui_layout</code> exposes the following <a href="https://docs.rs/bevy/0.12/bevy/ecs/component/trait.Component.html"><code>Component</code></a>s to control layouting:</p>
 <ul>
-<li><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Node.html"><code>Node</code></a>: A layout node, either a container holding other nodes as bevy
+<li><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Node.html"><code>Node</code></a>: A layout node, either a container holding other nodes as bevy
 <a href="https://docs.rs/bevy/0.12/bevy/hierarchy/struct.Children.html"><code>Children</code></a> or a leaf node.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Root.html"><code>Root</code></a>: The root of a node hierarchy. You may have several, all computations
+<li><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.Root.html"><code>Root</code></a>: The root of a node hierarchy. You may have several, all computations
 start from the root.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a>: If you add this component to a <code>Root</code> entity, it will keep
-the same size as the camera with the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.ScreenRoot.html"><code>ScreenRoot</code></a>: If you add this component to a <code>Root</code> entity, it will keep
+the same size as the camera with the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.LayoutRootCamera.html"><code>LayoutRootCamera</code></a> component.</li>
 </ul>
-<p>See the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation for detailed explanation.</p>
-<p>In short: a <code>Node</code> has independent <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s on the <code>x</code> and <code>y</code> axis. When the
-node is a <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Container.html"><code>Container</code></a>, it also has additional properties that manages how
+<p>See the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation for detailed explanation.</p>
+<p>In short: a <code>Node</code> has independent <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s on the <code>x</code> and <code>y</code> axis. When the
+node is a <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.Container.html"><code>Container</code></a>, it also has additional properties that manages how
 children are distributed within the container.</p>
 <p>Those additional properties are:</p>
 <ul>
-<li><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Flow.html"><code>Flow</code></a>: The direction in which the children are distributed</li>
-<li><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Alignment.html"><code>Alignment</code></a>: Where on the cross axis are nodes aligned.</li>
-<li><a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Distribution.html"><code>Distribution</code></a>: How to distribute the children of this container.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Flow.html"><code>Flow</code></a>: The direction in which the children are distributed</li>
+<li><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Alignment.html"><code>Alignment</code></a>: Where on the cross axis are nodes aligned.</li>
+<li><a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Distribution.html"><code>Distribution</code></a>: How to distribute the children of this container.</li>
 <li><code>margin</code>: How much margin to put on main and cross axis</li>
 </ul>
 <p>By default, items are aligned at the center of the container, distributed
@@ -1974,10 +1972,10 @@ on the flow direction evenly within the container.</p>
 <p>A <code>Rule</code> tells the size of the <code>Node</code>, it can depend on the size of its children,
 the size of its parent or be a fixed value.</p>
 <p>There isn’t more to it, that’s pretty much all of <code>cuicui_layout</code>.
-If this wasn’t clear enough please read the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation.</p>
+If this wasn’t clear enough please read the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a> and <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.Container.html"><code>Container</code></a> documentation.</p>
 <h3 id="content-sized"><a class="header" href="#content-sized">Content-sized</a></h3>
 <p>It is possible to size leaf nodes based on components present on the same entity.</p>
-<p>Use the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/index.html"><code>content_sized</code></a> traits to do that.</p>
+<p>Use the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/content_sized/index.html"><code>content_sized</code></a> traits to do that.</p>
 <h3 id="debugging"><a class="header" href="#debugging">Debugging</a></h3>
 <p><code>cuicui_layout</code> has an integrated debugger. Enable it with the <code>cuicui_layout/debug</code>
 cargo feature.</p>
@@ -2052,10 +2050,10 @@ and node sizes.</p>
 <p>There are several view modes, you cycle through them by pressing the space bar:</p>
 <ul>
 <li><strong>nothing</strong> (default): There is no additional informations displayed</li>
-<li><strong>outlines</strong>: Displays the outline of each <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/struct.Container.html"><code>Container</code></a> and <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Node.html"><code>Node</code></a> visible
+<li><strong>outlines</strong>: Displays the outline of each <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/struct.Container.html"><code>Container</code></a> and <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Node.html"><code>Node</code></a> visible
 on screen, with a different color</li>
 <li><strong>outlines and rules</strong>: In addition to the outline, display each node’s vertical
-and horizontal <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s.
+and horizontal <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/enum.Rule.html"><code>Rule</code></a>s.
 <ul>
 <li>Arrows pointing outwards left and right mean the horizontal size (width) depends on
 the size of the parent of the node.</li>
@@ -2067,17 +2065,17 @@ the size of the children of the node.</li>
 </li>
 </ul>
 <h3 id="debug-view-configuration"><a class="header" href="#debug-view-configuration">Debug view configuration</a></h3>
-<p>The debug view can be programmatically manipulated using the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/debug/struct.Options.html"><code>Options</code></a> <a href="https://docs.rs/bevy/0.12/bevy/ecs/prelude/trait.Resource.html"><code>Resource</code></a>.</p>
+<p>The debug view can be programmatically manipulated using the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/debug/struct.Options.html"><code>Options</code></a> <a href="https://docs.rs/bevy/0.12/bevy/ecs/prelude/trait.Resource.html"><code>Resource</code></a>.</p>
 <h4 id="display-invisible-layouts"><a class="header" href="#display-invisible-layouts">Display invisible layouts</a></h4>
 <p>The debug view does not display information about <code>Container</code>s with
 a <code>ComputedVisibility</code> component returning <code>vis.is_visible() == false</code>.</p>
-<p>Set the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/debug/struct.Options.html#structfield.show_hidden"><code>Options.show_hidden</code></a> field to <code>true</code> to display outlines even if the
+<p>Set the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/debug/struct.Options.html#structfield.show_hidden"><code>Options.show_hidden</code></a> field to <code>true</code> to display outlines even if the
 <code>ComputedVisibility</code> is <code>false</code>.</p>
 <h4 id="changeremove-the-cycling-key"><a class="header" href="#changeremove-the-cycling-key">Change/Remove the cycling key</a></h4>
 <p>Maybe your game makes heavy use of the space key (I’ve heard that some plateformers use
 the space key for a common action, would you belive it?) and you don’t want to cycle
 through the debug views each time space is pressed.</p>
-<p>You can set the <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/debug/struct.Options.html#structfield.input_map"><code>Options.input_map</code></a> value to something else:</p>
+<p>You can set the <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/debug/struct.Options.html#structfield.input_map"><code>Options.input_map</code></a> value to something else:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(feature = &quot;cuicui_layout/debug&quot;)]
@@ -2089,7 +2087,7 @@ fn debug_toggle(mut opts: ResMut&lt;cuicui_layout::debug::Options&gt;) {
 <p>Confusingly, <code>bevy_ui</code> has a downward Y axis, while <code>bevy_sprite</code> has an upward
 Y axis.</p>
 <p>You can configure what Y axis direction the debug overlay uses by setting the
-<a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/debug/struct.Options.html#structfield.screen_space"><code>Options.screen_space</code></a> field.</p>
+<a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/debug/struct.Options.html#structfield.screen_space"><code>Options.screen_space</code></a> field.</p>
 <p>If you are using <code>cuicui_layout_bevy_ui</code>, this should be automatically set to
 <code>true</code> for you.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cuicui_layout-content-sized-nodes"><a class="header" href="#cuicui_layout-content-sized-nodes"><code>cuicui_layout</code> Content sized nodes</a></h1>
@@ -2104,14 +2102,14 @@ already take care of elements that should depend on the size of their content.</
 need to:</p>
 <ol>
 <li>Define a <a href="https://docs.rs/bevy/0.12/bevy/ecs/system/trait.SystemParam.html"><code>SystemParam</code></a> (we will refer to it as <code>MyContentSize</code>)</li>
-<li>Implement <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentParam.html"><code>ComputeContentParam</code></a> for <code>MyContentSize</code>
+<li>Implement <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/content_sized/trait.ComputeContentParam.html"><code>ComputeContentParam</code></a> for <code>MyContentSize</code>
 <ul>
-<li>In <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#associatedtype.Components"><code>ComputeContentParam::Components</code></a>, tell which components are used to
+<li>In <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#associatedtype.Components"><code>ComputeContentParam::Components</code></a>, tell which components are used to
 tell content size. Use <a href="https://docs.rs/bevy/0.12/bevy/ecs/prelude/struct.AnyOf.html"><code>AnyOf</code></a> if several.</li>
-<li>In <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#tymethod.condition"><code>ComputeContentParam::condition</code></a>, tell when the size update system should run</li>
+<li>In <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/content_sized/trait.ComputeContentParam.html#tymethod.condition"><code>ComputeContentParam::condition</code></a>, tell when the size update system should run</li>
 </ul>
 </li>
-<li>Implement <code>ComputeContentSize</code> for <code>MyContentSize</code>. <a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.ComputeContentSize.html#tymethod.compute_content"><code>ComputeContentSize::compute_content</code></a>
+<li>Implement <code>ComputeContentSize</code> for <code>MyContentSize</code>. <a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/content_sized/trait.ComputeContentSize.html#tymethod.compute_content"><code>ComputeContentSize::compute_content</code></a>
 is ran for each leaf node <a href="https://docs.rs/bevy/0.12/bevy/ecs/prelude/struct.Entity.html"><code>Entity</code></a> with the provided components.
 <ul>
 <li>The sizes infered by the layouting algorithm is passed as the <code>set_size</code>
@@ -2122,7 +2120,7 @@ of the return value.</li>
 </ul>
 </li>
 <li>Register <code>MyContentSize</code> as a content sized element computation using
-<a href="https://docs.rs/cuicui_layout/0.11.0/cuicui_layout/content_sized/trait.AppContentSizeExt.html#tymethod.add_content_sized"><code>app.add_content_sized::&lt;MyContentSize&gt;()</code></a>.</li>
+<a href="https://docs.rs/cuicui_layout/0.12.0/cuicui_layout/content_sized/trait.AppContentSizeExt.html#tymethod.add_content_sized"><code>app.add_content_sized::&lt;MyContentSize&gt;()</code></a>.</li>
 </ol>
 <p>And that’s it!</p>
 <p>The two distinct traits are required due to a limitation in the rust type system.
